@@ -1,0 +1,501 @@
+import React, { useRef, useState, useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import { X, ArrowRight } from 'lucide-react';
+import AnimatedTextButton from '../ui/animated-text-button';
+
+gsap.registerPlugin(ScrollTrigger);
+
+// Helper hook/component for smooth scrolling via ScrollSmoother
+const handleScrollTo = (targetId: string, callback?: () => void) => {
+    if (callback) callback();
+
+    // Access GSAP ScrollSmoother dynamically
+    const ScrollSmoother = (window as any).gsap?.ScrollTrigger?.get() || null;
+    const smoother = (window as any).gsap?.plugins?.scrollSmoother?.get();
+
+    if (smoother) {
+        smoother.scrollTo(targetId, true);
+    } else {
+        const el = document.querySelector(targetId);
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+};
+
+const MenuButton: React.FC<{ onClick: () => void; isMenuOpen: boolean }> = ({ onClick, isMenuOpen }) => {
+    const [isHovered, setIsHovered] = useState(false);
+    const topBarRef = useRef<HTMLDivElement>(null);
+    const bottomBarRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+        if (isMenuOpen) {
+            gsap.to(topBarRef.current, {
+                width: '100%',
+                rotation: 45,
+                y: 4,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+            gsap.to(bottomBarRef.current, {
+                width: '100%',
+                rotation: -45,
+                y: -4,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        } else if (isHovered) {
+            gsap.to(topBarRef.current, {
+                width: '100%',
+                rotation: 0,
+                y: 0,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+            gsap.to(bottomBarRef.current, {
+                width: '100%',
+                rotation: 0,
+                y: 0,
+                duration: 0.3,
+                ease: 'power2.out',
+                delay: 0.05
+            });
+        } else {
+            gsap.to(topBarRef.current, {
+                width: '60%',
+                rotation: 0,
+                y: 0,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+            gsap.to(bottomBarRef.current, {
+                width: '60%',
+                rotation: 0,
+                y: 0,
+                duration: 0.3,
+                ease: 'power2.out',
+                delay: 0.05
+            });
+        }
+    }, { dependencies: [isHovered, isMenuOpen] });
+
+    return (
+        <button
+            onClick={onClick}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            className="menu-button group bg-ln-white p-[0.7rem] md:p-[0.95rem] hover:bg-ln-offwhite transition-all duration-300 flex items-center justify-center border-none shadow-none cursor-pointer aspect-square rounded-[0.5rem] hover:scale-105 active:scale-95 z-50 relative"
+            aria-label="Toggle Menu"
+        >
+            <div className="menu-inner flex flex-col gap-[0.35rem] w-[1.4rem] md:w-[1.7rem]">
+                <div
+                    ref={topBarRef}
+                    className="h-[2.5px] w-[60%] bg-ln-deep-forest self-end rounded-full origin-center"
+                ></div>
+                <div
+                    ref={bottomBarRef}
+                    className="h-[2.5px] w-[60%] bg-ln-deep-forest self-start rounded-full origin-center"
+                ></div>
+            </div>
+        </button>
+    );
+};
+
+const Header: React.FC = () => {
+    const headerRef = useRef<HTMLElement>(null);
+    const logoRef = useRef<HTMLDivElement>(null);
+    const actionsRef = useRef<HTMLDivElement>(null);
+    const linksRef = useRef<HTMLDivElement>(null);
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState('#home');
+
+    // Full screen overlay drawer animation refs
+    const menuOverlayRef = useRef<HTMLDivElement>(null);
+    const menuBgRef = useRef<HTMLDivElement>(null);
+    const menuContainerRef = useRef<HTMLDivElement>(null);
+    const menuItemsRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+        // Entrance animation for header bar
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1.2 } });
+
+        tl.from(headerRef.current, {
+            y: -100,
+            opacity: 0,
+        })
+            .from([logoRef.current, linksRef.current, actionsRef.current], {
+                y: 20,
+                opacity: 0,
+                stagger: 0.1,
+            }, "-=0.8");
+
+        // Scroll-based shrink animation using ScrollTrigger
+        const shrinkTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: 'body',
+                start: 'top top',
+                end: '+=150',
+                scrub: true,
+            }
+        });
+
+        shrinkTl.to(headerRef.current, {
+            paddingTop: '0.6rem',
+            paddingBottom: '0.6rem',
+            duration: 1,
+            ease: 'none'
+        }, 0)
+            .to(logoRef.current?.querySelectorAll('span') || [], {
+                fontSize: window.innerWidth >= 768 ? '2rem' : '1.6rem',
+                duration: 1,
+                ease: 'none'
+            }, 0)
+            .to('.store-button', {
+                paddingTop: window.innerWidth >= 768 ? '0.85rem' : '0.7rem',
+                paddingBottom: window.innerWidth >= 768 ? '0.85rem' : '0.7rem',
+                duration: 1,
+                ease: 'none'
+            }, 0)
+            .to('.store-button-icon', {
+                width: '1rem',
+                height: '1rem',
+                duration: 1,
+                ease: 'none'
+            }, 0)
+            .to('.store-button-text', {
+                fontSize: window.innerWidth >= 768 ? '0.95rem' : '0.85rem',
+                duration: 1,
+                ease: 'none'
+            }, 0)
+            .to('.menu-button', {
+                padding: window.innerWidth >= 768 ? '0.75rem' : '0.55rem',
+                duration: 1,
+                ease: 'none'
+            }, 0)
+            .to('.menu-inner', {
+                width: window.innerWidth >= 768 ? '1.5rem' : '1.2rem',
+                duration: 1,
+                ease: 'none'
+            }, 0);
+
+        // Active section trigger tracking across scroll
+        ['#home', '#introduction', '#services', '#track-mode', '#showcase', '#pricing', '#helmets', '#faq', '#contact-form'].forEach((id) => {
+            ScrollTrigger.create({
+                trigger: id,
+                start: 'top 35%',
+                end: 'bottom 35%',
+                onEnter: () => setActiveSection(id),
+                onEnterBack: () => setActiveSection(id),
+            });
+        });
+    }, { scope: headerRef });
+
+    // Handle full-screen modal transition on toggle
+    useEffect(() => {
+        if (isMenuOpen) {
+            document.body.style.overflow = 'hidden';
+
+            gsap.set(menuOverlayRef.current, { display: 'flex' });
+            gsap.fromTo(menuBgRef.current,
+                { y: '-100%' },
+                { y: '0%', duration: 0.6, ease: 'power4.inOut' }
+            );
+
+            const items = menuItemsRef.current?.querySelectorAll('.drawer-link-item') || [];
+            gsap.fromTo(items,
+                { y: 50, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, delay: 0.35, ease: 'power3.out' }
+            );
+
+            const footerItems = menuContainerRef.current?.querySelectorAll('.drawer-footer-item') || [];
+            gsap.fromTo(footerItems,
+                { y: 20, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.4, stagger: 0.05, delay: 0.6, ease: 'power2.out' }
+            );
+        } else {
+            document.body.style.overflow = '';
+        }
+    }, [isMenuOpen]);
+
+    const closeOverlayMenu = () => {
+        const items = menuItemsRef.current?.querySelectorAll('.drawer-link-item') || [];
+        const footerItems = menuContainerRef.current?.querySelectorAll('.drawer-footer-item') || [];
+
+        gsap.to([...Array.from(items), ...Array.from(footerItems)], {
+            y: 30,
+            opacity: 0,
+            duration: 0.3,
+            ease: 'power2.in'
+        });
+
+        gsap.to(menuBgRef.current, {
+            y: '-100%',
+            duration: 0.5,
+            delay: 0.15,
+            ease: 'power3.inOut',
+            onComplete: () => {
+                gsap.set(menuOverlayRef.current, { display: 'none' });
+                setIsMenuOpen(false);
+            }
+        });
+    };
+
+    // Rolling Link specifically designed for Drawer Links
+    const RollingDrawerLink: React.FC<{ text: string; href: string; number: string }> = ({ text, href, number }) => {
+        const linkRef = useRef<HTMLAnchorElement>(null);
+
+        useGSAP(() => {
+            if (!linkRef.current) return;
+            const topChars = linkRef.current.querySelectorAll('.char-top');
+            const bottomChars = linkRef.current.querySelectorAll('.char-bottom');
+
+            const tl = gsap.timeline({ paused: true });
+            tl.to(topChars, {
+                y: '-100%',
+                stagger: 0.015,
+                duration: 0.4,
+                ease: 'power3.inOut'
+            })
+            .to(bottomChars, {
+                y: '-100%',
+                stagger: 0.015,
+                duration: 0.4,
+                ease: 'power3.inOut'
+            }, 0);
+
+            const onEnter = () => tl.play();
+            const onLeave = () => tl.reverse();
+
+            linkRef.current.addEventListener('mouseenter', onEnter);
+            linkRef.current.addEventListener('mouseleave', onLeave);
+
+            return () => {
+                linkRef.current?.removeEventListener('mouseenter', onEnter);
+                linkRef.current?.removeEventListener('mouseleave', onLeave);
+            };
+        }, { scope: linkRef });
+
+        return (
+            <a
+                ref={linkRef}
+                href={href}
+                onClick={(e) => {
+                    e.preventDefault();
+                    closeOverlayMenu();
+                    setTimeout(() => {
+                        handleScrollTo(href);
+                    }, 500);
+                }}
+                className="drawer-link-item flex items-baseline gap-6 font-display font-black text-4xl md:text-6xl lg:text-7xl uppercase text-white hover:text-ln-yellow transition-colors duration-200 py-2 select-none relative overflow-hidden"
+            >
+                <span className="text-xs font-mono font-bold text-ln-yellow/60">{number}</span>
+                <div className="relative h-[1.15em] overflow-hidden flex items-center">
+                    <div className="flex">
+                        {text.split('').map((c, i) => (
+                            <span key={i} className="char-top inline-block">{c === ' ' ? '\u00A0' : c}</span>
+                        ))}
+                    </div>
+                    <div className="flex absolute top-full left-0">
+                        {text.split('').map((c, i) => (
+                            <span key={i} className="char-bottom inline-block text-ln-yellow">{c === ' ' ? '\u00A0' : c}</span>
+                        ))}
+                    </div>
+                </div>
+            </a>
+        );
+    };
+
+    const isDarkSection = activeSection === '#home' || activeSection === '#showcase' || activeSection === '#helmets' || activeSection === '#contact-form';
+
+    return (
+        <div className="fixed top-0 left-0 w-full z-50 pointer-events-none">
+            <header
+                ref={headerRef}
+                className="relative w-full px-[1.5rem] py-[1.2rem] flex justify-between items-center bg-transparent backdrop-blur-[2px]"
+            >
+                {/* Left Logo - Adaptive Brand Pill */}
+                <div ref={logoRef} className="flex-shrink-0 pointer-events-auto leading-[0.85] z-10">
+                    <a
+                        href="/"
+                        className={`flex flex-col items-start group px-3.5 py-2 rounded-xl backdrop-blur-md border transition-all duration-500 ${
+                            isDarkSection
+                                ? 'bg-black/60 border-white/20 shadow-lg hover:bg-black/80'
+                                : 'bg-white/80 border-black/5 shadow-sm hover:bg-white/95'
+                        }`}
+                    >
+                        <span className={`font-serif uppercase tracking-tight text-[1.6rem] md:text-[1.9rem] transition-colors duration-500 ${
+                            isDarkSection
+                                ? 'text-white group-hover:text-ln-yellow'
+                                : 'text-ln-deep-forest group-hover:text-ln-yellow'
+                        }`}>
+                            LOGIC
+                        </span>
+                        <span className={`font-sans font-black uppercase tracking-tight text-[1.6rem] md:text-[1.9rem] transition-colors duration-500 ${
+                            isDarkSection
+                                ? 'text-ln-yellow group-hover:text-white'
+                                : 'text-ln-yellow group-hover:text-ln-deep-forest'
+                        }`}>
+                            STAC
+                        </span>
+                    </a>
+                </div>
+
+                {/* Center - Desktop Navigation Links (Absolutely centered) */}
+                <div
+                    ref={linksRef}
+                    className="hidden md:flex items-center gap-10 bg-ln-white/80 backdrop-blur-md px-8 py-3.5 rounded-full border border-ln-deep-forest/5 shadow-sm pointer-events-auto absolute left-1/2 -translate-x-1/2 z-10"
+                >
+                    {[
+                        { label: 'Home', target: '#home' },
+                        { label: 'Services', target: '#services' },
+                        { label: 'Showcase', target: '#showcase' },
+                        { label: 'Pricing', target: '#pricing' },
+                        { label: 'Store', target: '#helmets' },
+                    ].map((item, idx) => (
+                        <a
+                            key={idx}
+                            href={item.target}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                handleScrollTo(item.target);
+                            }}
+                            className={`font-sans font-bold text-xs uppercase tracking-wider transition-all relative group py-1 ${
+                                activeSection === item.target
+                                    ? 'text-ln-black font-extrabold'
+                                    : 'text-ln-deep-forest hover:text-ln-black'
+                            }`}
+                        >
+                            {item.label}
+                            <span className={`absolute bottom-0 left-0 h-0.5 bg-ln-yellow transition-all duration-300 ${
+                                activeSection === item.target ? 'w-full' : 'w-0 group-hover:w-full'
+                            }`} />
+                        </a>
+                    ))}
+                </div>
+
+                {/* Right Actions */}
+                <div ref={actionsRef} className="flex items-center gap-[0.9rem] pointer-events-auto">
+                    <AnimatedTextButton
+                        text="Get In Touch"
+                        href="#contact-form"
+                        onClick={() => {
+                            handleScrollTo('#contact-form');
+                        }}
+                        icon="/images/logos-icons/collab.svg"
+                        iconAlt="Get In Touch"
+                        className="store-button group flex items-center gap-[0.55rem] bg-ln-yellow text-ln-deep-forest px-[1.6rem] md:px-[2rem] py-[0.95rem] md:py-[1.1rem] font-sans font-black uppercase tracking-tight hover:brightness-105 hover:scale-105 active:scale-95 transition-all duration-300 rounded-[0.6rem] shadow-none border-none cursor-pointer"
+                        iconClassName="store-button-icon w-[1.2rem] h-[1.2rem]"
+                        textClassName="store-button-text text-[0.95rem] md:text-[1.05rem]"
+                    />
+                    <MenuButton
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        isMenuOpen={isMenuOpen}
+                    />
+                </div>
+            </header>
+
+            {/* FULL-SCREEN NAVIGATION OVERLAY DRAWER */}
+            <div
+                ref={menuOverlayRef}
+                className="fixed inset-0 z-40 hidden flex-col justify-between p-8 md:p-16 pointer-events-auto"
+            >
+                {/* Background color block with noise mask */}
+                <div
+                    ref={menuBgRef}
+                    className="absolute inset-0 bg-[#161814] -z-10 origin-top flex flex-col justify-between"
+                >
+                    {/* Noise overlay */}
+                    <div className="absolute inset-0 bg-image-noise opacity-15 mix-blend-overlay pointer-events-none" />
+
+                    {/* Big beautiful absolute pattern */}
+                    <div
+                        className="absolute inset-0 opacity-5 pointer-events-none"
+                        style={{
+                            backgroundImage: 'url("/images/green-svgs/background-green.svg")',
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                        }}
+                    />
+                </div>
+
+                {/* Top header row inside the drawer */}
+                <div className="w-full flex justify-between items-center z-50">
+                    <div className="flex flex-col items-start leading-[0.85]">
+                        <span className="font-serif text-white uppercase tracking-tight text-[1.9rem] md:text-[2.3rem]">
+                            LOGIC
+                        </span>
+                        <span className="font-sans font-black text-white uppercase tracking-tight text-[1.9rem] md:text-[2.3rem]">
+                            STAC
+                        </span>
+                    </div>
+                    <button
+                        onClick={closeOverlayMenu}
+                        className="bg-white/10 hover:bg-white text-white hover:text-black p-3.5 rounded-full border border-white/10 hover:scale-105 transition-all duration-300 cursor-pointer flex items-center justify-center aspect-square"
+                        aria-label="Close Menu"
+                    >
+                        <X size={20} />
+                    </button>
+                </div>
+
+                {/* Main Links Area */}
+                <div
+                    ref={menuContainerRef}
+                    className="w-full max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-16"
+                >
+                    {/* Link Column */}
+                    <div ref={menuItemsRef} className="flex flex-col gap-2 md:gap-4">
+                        <RollingDrawerLink number="01" text="HOME" href="#home" />
+                        <RollingDrawerLink number="02" text="SERVICES" href="#services" />
+                        <RollingDrawerLink number="03" text="PORTFOLIO" href="#showcase" />
+                        <RollingDrawerLink number="04" text="PRICING" href="#pricing" />
+                        <RollingDrawerLink number="05" text="CONTACT" href="#contact-form" />
+                    </div>
+
+                    {/* Meta info columns */}
+                    <div className="flex flex-col md:flex-row gap-12 md:gap-24 text-gray-400 font-sans">
+                        {/* Company Details Column */}
+                        <div className="drawer-footer-item flex flex-col gap-4">
+                            <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-ln-yellow">STUDIO LOCATION</span>
+                            <p className="text-sm text-white font-medium leading-relaxed">
+                                LogicStac Agency<br />
+                                120 Creative Boulevard<br />
+                                London, EC1A 1BB
+                            </p>
+                        </div>
+
+                        {/* Social Handles Column */}
+                        <div className="drawer-footer-item flex flex-col gap-4">
+                            <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-ln-yellow">CONNECT</span>
+                            <div className="flex flex-col gap-2">
+                                {['Instagram', 'Dribbble', 'LinkedIn', 'Twitter'].map((social) => (
+                                    <a
+                                        key={social}
+                                        href={`#${social.toLowerCase()}`}
+                                        className="text-sm font-semibold text-white hover:text-ln-yellow transition-colors flex items-center gap-1 group"
+                                    >
+                                        {social}
+                                        <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">→</span>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Footer bar of the menu */}
+                <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 border-t border-white/5 pt-8 text-gray-500 text-xs font-sans drawer-footer-item">
+                    <p>© 2025 LOGICSTAC AGENCY. ALL RIGHTS RESERVED.</p>
+                    <div className="flex gap-6 text-white/40">
+                        <a href="/privacy" className="hover:text-white transition-colors">PRIVACY POLICY</a>
+                        <a href="/terms" className="hover:text-white transition-colors">TERMS OF SERVICE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Header;

@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'Brier';
+    src: url('/fonts/Brier-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mona Sans Variable';
+    src: url('/fonts/Mona-Sans.woff2') format('woff2');
+    font-weight: 200 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@theme {
+    /* LN Color System - Tailwind v4 format */
+    --color-ln-yellow: #FF6B00;
+    --color-ln-dark: #101400;
+    --color-ln-olive: #1a1c16;
+    --color-ln-cream: #F4F4ED;
+    --color-ln-gray: #1f1f1f;
+    --color-ln-onyx: #111112;
+    --color-ln-dark-gray: #535450;
+    --color-ln-slate: #747282;
+    --color-ln-black: #000000;
+    --color-ln-purple: #7367F0;
+    --color-ln-lime: #B2C73A;
+    --color-ln-sage: #B4B8A5;
+    --color-ln-stone: #B9BBAD;
+    --color-ln-beige: #DDE1D2;
+    --color-ln-offwhite: #EFEEEC;
+    --color-ln-white: #FFFFFF;
+    --color-ln-deep-forest: #1F2323;
+    --color-ln-forest: #282C20;
+    --color-ln-moss: #343A26;
+
+    /* Font families - Tailwind v4 format */
+    --font-sans: 'Mona Sans Variable';
+    --font-serif: 'Brier';
+    --font-mono: 'Mona Sans Variable';
+
+    /* Custom font aliases */
+    --font-display: 'Mona Sans Variable';
+    --font-brier: 'Brier';
+
+    --background-image-noise: url('/images/noise.svg');
+}
+
+@layer base {
+    body {
+        cursor: crosshair;
+        background-color: var(--color-ln-cream);
+        font-family: 'Mona Sans Variable';
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+@layer utilities {
+    .stroke-text {
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+        color: transparent;
+    }
+
+    .stroke-text-dark {
+        -webkit-text-stroke: 1px rgba(0, 0, 0, 0.2);
+        color: transparent;
+    }
+
+    .clip-diagonal {
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    }
+
+    ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+    }
+
+    @keyframes background-float {
+
+        0%,
+        100% {
+            transform: translate(0, 0) rotate(0deg) scale(1.1);
+        }
+
+        33% {
+            transform: translate(-2%, 2%) rotate(2deg) scale(1.15);
+        }
+
+        66% {
+            transform: translate(2%, -1%) rotate(-1deg) scale(1.1);
+        }
+    }
+
+    .animate-background-float {
+        animation: background-float 30s ease-in-out infinite;
+    }
+
+    .animate-background-float-delayed {
+        animation: background-float 35s ease-in-out infinite reverse;
+    }
+
+    @keyframes liquid-wave {
+
+        0%,
+        100% {
+            transform: translateY(0) scaleY(1);
+            opacity: 0.1;
+        }
+
+        50% {
+            transform: translateY(-20px) scaleY(1.1);
+            opacity: 0.15;
+        }
+    }
+
+    .liquid-waves {
+        background: radial-gradient(ellipse at center, rgba(255, 107, 0, 0.1) 0%, transparent 70%);
+        animation: liquid-wave 8s ease-in-out infinite;
+    }
+
+    .liquid-waves::before,
+    .liquid-waves::after {
+        content: '';
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(ellipse at center, rgba(255, 107, 0, 0.08) 0%, transparent 60%);
+        animation: liquid-wave 6s ease-in-out infinite;
+    }
+
+    .liquid-waves::before {
+        top: -50%;
+        left: -50%;
+        animation-delay: -2s;
+    }
+
+    .liquid-waves::after {
+        bottom: -50%;
+        right: -50%;
+        animation-delay: -4s;
+    }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "LogicStac Agency",
+  "description": "LogicStac - Award-winning digital design and software development agency showcase built with React, GSAP, Three.js, and Tailwind CSS",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
