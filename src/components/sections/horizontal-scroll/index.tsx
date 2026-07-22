@@ -19,9 +19,7 @@ const HorizontalScroll: React.FC = () => {
       if (!track) return;
 
       const getScrollDistance = () => {
-        const baseDistance = Math.max(track.scrollWidth - window.innerWidth, 0);
-        // Add extra scroll distance to ensure full scroll through
-        return baseDistance + window.innerWidth * 0.5;
+        return Math.max(track.scrollWidth - window.innerWidth + 60, 0);
       };
 
       // Horizontal scroll
@@ -130,10 +128,10 @@ const HorizontalScroll: React.FC = () => {
           style={{ width: 'max-content' }}
         >
           {/* Single Scene Container - Wider for better horizontal scroll */}
-          <div className="relative w-[2400px] h-[100vh] flex-shrink-0" style={{ minWidth: '2400px', position: 'relative' }}>
-            {/* Quote Section - Centered Top */}
+          <div className="relative w-[3700px] h-[100vh] flex-shrink-0" style={{ minWidth: '3700px', position: 'relative' }}>
+            {/* Quote Section - Left Banner */}
             <div
-              className="absolute z-20 text-center"
+              className="absolute z-20 p-8 sm:p-10 bg-black/60 backdrop-blur-xl border border-white/15 rounded-3xl shadow-2xl"
               style={{
                 top: quoteItem.position.top,
                 left: quoteItem.position.left,
@@ -141,8 +139,15 @@ const HorizontalScroll: React.FC = () => {
                 width: quoteItem.position.width,
               }}
             >
-              <p className="font-serif text-2xl lg:text-3xl leading-tight text-ln-cream mb-4">
-                It doesn't matter <span className="italic font-bold">where</span> you start, it's <span className="italic font-bold">how</span> you progress from there.
+              <div className="text-xs font-mono font-bold text-ln-yellow uppercase tracking-widest mb-3 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-ln-yellow animate-pulse" />
+                <span>LOGICSTAC SHOWCASE</span>
+              </div>
+              <p className="font-serif text-2xl lg:text-3xl leading-snug text-white">
+                It doesn't matter <span className="italic font-bold text-ln-yellow">where</span> you start, it's <span className="italic font-bold text-ln-yellow">how</span> you progress from there.
+              </p>
+              <p className="mt-4 text-xs font-sans text-gray-400">
+                Explore our curated WebGL experiences, brand interfaces, and high-performance digital products →
               </p>
             </div>
 

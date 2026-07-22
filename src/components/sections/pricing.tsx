@@ -166,7 +166,7 @@ const Pricing: React.FC = () => {
               ref={(el) => { cardsRef.current[idx] = el; }}
               className={`relative flex flex-col justify-between rounded-2xl p-8 transition-all duration-500 border ${
                 tier.popular
-                  ? 'bg-gradient-to-b from-[#1c1e1a] to-[#121411] border-ln-yellow/40 shadow-[0_15px_40px_rgba(255,107,0,0.1)] scale-105 z-20'
+                  ? 'bg-gradient-to-b from-[#1c1e1a] to-[#121411] border-ln-yellow/40 shadow-[0_15px_40px_rgba(255,107,0,0.1)] lg:scale-105 z-20'
                   : 'bg-[#151713] border-gray-800 hover:border-gray-700 hover:scale-[1.02]'
               }`}
             >
