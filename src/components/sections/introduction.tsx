@@ -41,7 +41,7 @@ const Introduction: React.FC = () => {
   }, { scope: containerRef });
 
   return (
-    <section id="services" ref={containerRef} className="relative w-full bg-ln-dark text-ln-cream py-24 px-4 overflow-hidden">
+    <section id="services" ref={containerRef} className="relative w-full bg-ln-dark text-ln-cream py-16 md:py-24 px-4 overflow-hidden">
       {/* Animated Background Green Curve - Same as Hero */}
       <BackgroundCurve opacity={15} className="opacity-15" />
 
@@ -61,14 +61,14 @@ const Introduction: React.FC = () => {
         <div className="absolute bottom-[20%] left-[15%] w-2 h-2 rounded-full bg-ln-yellow opacity-25 blur-sm animate-pulse" style={{ animationDelay: '2s' }}></div>
 
         {/* Typography Block */}
-        <div ref={textRef} className="flex flex-col items-center text-center mb-32">
-          <div className="w-16 h-16 border border-ln-yellow rounded-full flex items-center justify-center mb-8 opacity-80">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-ln-yellow">
+        <div ref={textRef} className="flex flex-col items-center text-center mb-16 md:mb-32">
+          <div className="w-12 h-12 md:w-16 md:h-16 border border-ln-yellow rounded-full flex items-center justify-center mb-6 md:mb-8 opacity-80">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-ln-yellow md:w-[30px] md:h-[30px]">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" strokeWidth="1" />
             </svg>
           </div>
 
-          <h2 className="text-5xl md:text-7xl lg:text-[7rem] leading-[0.85] tracking-tight uppercase max-w-[95%] md:max-w-[90%] lg:max-w-[85%] mx-auto font-display font-bold">
+          <h2 className="text-3xl sm:text-5xl md:text-7xl lg:text-[7rem] leading-[0.9] md:leading-[0.85] tracking-tight uppercase max-w-full md:max-w-[90%] lg:max-w-[85%] mx-auto font-display font-bold">
             {(() => {
               let letterIndex = 0;
               const parts = [

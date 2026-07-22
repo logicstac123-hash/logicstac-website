@@ -111,7 +111,7 @@ const Pricing: React.FC = () => {
   }, []);
 
   return (
-    <section id="pricing" ref={sectionRef} className="w-full bg-[#111112] text-white py-32 px-6 relative z-30 overflow-hidden border-t border-gray-900">
+    <section id="pricing" ref={sectionRef} className="w-full bg-[#111112] text-white py-16 md:py-32 px-4 md:px-6 relative z-30 overflow-hidden border-t border-gray-900">
       <div className="absolute inset-0 bg-image-noise opacity-15 pointer-events-none" />
 
       {/* Background radial glow */}
@@ -120,13 +120,13 @@ const Pricing: React.FC = () => {
       <div className="max-w-[1400px] mx-auto relative z-10">
 
         {/* Header Block */}
-        <div className="flex flex-col items-center text-center mb-20">
+        <div className="flex flex-col items-center text-center mb-12 md:mb-20">
           <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full mb-6">
             <Sparkles className="w-4 h-4 text-ln-yellow animate-pulse" />
             <span className="text-[10px] font-mono tracking-widest uppercase text-gray-300">Transparent Partnership</span>
           </div>
 
-          <h2 className="font-display font-bold text-5xl md:text-7xl lg:text-8xl tracking-tighter uppercase leading-none mb-6">
+          <h2 className="font-display font-bold text-3xl sm:text-5xl md:text-7xl lg:text-8xl tracking-tighter uppercase leading-none mb-6">
             Pricing <span className="text-ln-yellow font-serif font-normal italic lowercase">Models</span>
           </h2>
 

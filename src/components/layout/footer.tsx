@@ -149,49 +149,49 @@ const Footer = () => {
                     }}
                 />
 
-                {/* Title and signature - repositioned higher for better visibility */}
-                <div className="absolute top-[12rem] left-1/2 -translate-x-1/2 w-full max-w-7xl text-center z-[1]">
+                {/* Title and signature - repositioned for mobile and desktop */}
+                <div className="absolute top-[5rem] sm:top-[8rem] md:top-[12rem] left-1/2 -translate-x-1/2 w-full max-w-7xl px-4 text-center z-[1]">
                     <div className="absolute -top-24 left-1/2 -translate-x-1/2 -rotate-[5deg] w-64 md:w-[12vw] z-[-1] pointer-events-none select-none mix-blend-multiply">
                     </div>
-                    <h2 className="text-white relative z-10 text-[3rem] md:text-[4rem] lg:text-[5rem] xl:text-[5.5rem] font-sans font-black leading-[0.8] tracking-[-0.04em] uppercase font-semibold">
-                        CRAFTING <span className="text-ln-yellow font-serif font-normal">DIGITAL</span> <br />
-                        <span className="text-ln-yellow font-serif font-normal">EXCELLENCE.</span>
+                    <h2 className="text-white relative z-10 text-[1.8rem] sm:text-[3rem] md:text-[4rem] lg:text-[5rem] xl:text-[5.5rem] font-sans font-black leading-[0.9] md:leading-[0.8] tracking-[-0.04em] uppercase font-semibold">
+                        LOGICSTAC <span className="text-ln-yellow font-serif font-normal">DIGITAL</span> <br />
+                        <span className="text-ln-yellow font-serif font-normal">AGENCY.</span>
                     </h2>
                 </div>
 
                 {/* Navigation */}
-                <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 z-20">
-                    <div className="w-full max-w-[82.5rem] mx-auto px-12 flex justify-between items-center">
+                <div className="absolute top-[48%] -translate-y-1/2 left-0 right-0 z-20">
+                    <div className="w-full max-w-[82.5rem] mx-auto px-4 sm:px-12 flex justify-around sm:justify-between items-center">
                         {/* PAGES */}
-                        <div className="flex flex-col gap-3 items-center text-center">
-                            <span className="text-white/20 text-[0.5rem] uppercase font-bold tracking-[0.4em] font-sans">PAGES</span>
+                        <div className="flex flex-col gap-2 sm:gap-3 items-center text-center">
+                            <span className="text-white/30 text-[0.55rem] uppercase font-bold tracking-[0.3em] font-sans">PAGES</span>
                             <nav className="flex flex-col gap-1 md:gap-2 items-center">
                                 {['HOME', 'SERVICES', 'PORTFOLIO', 'PRICING'].map(link => (
                                     <RollingLink
                                         key={link}
                                         text={link}
                                         href={`#${link === 'PORTFOLIO' ? 'showcase' : link.toLowerCase()}`}
-                                        className="text-lg md:text-xl lg:text-2xl text-ln-white leading-[1.1]"
+                                        className="text-base sm:text-lg md:text-xl lg:text-2xl text-ln-white leading-[1.1]"
                                     />
                                 ))}
                                 <RollingLink
                                     text="CONTACT"
                                     href="#contact-form"
-                                    className="text-base md:text-lg underline font-normal decoration-[2px] underline-offset-[0.4rem] text-ln-yellow"
+                                    className="text-xs sm:text-base md:text-lg underline font-normal decoration-[2px] underline-offset-[0.3rem] text-ln-yellow"
                                 />
                             </nav>
                         </div>
 
                         {/* FOLLOW ON */}
-                        <div className="flex flex-col gap-3 items-center text-center">
-                            <span className="text-white/20 text-[0.5rem] uppercase font-bold tracking-[0.4em] font-sans">FOLLOW ON</span>
-                            <nav className="flex flex-col gap-1 md:gap-2   items-center">
+                        <div className="flex flex-col gap-2 sm:gap-3 items-center text-center">
+                            <span className="text-white/30 text-[0.55rem] uppercase font-bold tracking-[0.3em] font-sans">FOLLOW ON</span>
+                            <nav className="flex flex-col gap-1 md:gap-2 items-center">
                                 {['TIKTOK', 'INSTAGRAM', 'YOUTUBE', 'TWITCH'].map(link => (
                                     <RollingLink
                                         key={link}
                                         text={link}
                                         href={`#${link}`}
-                                        className="text-lg md:text-xl lg:text-2xl text-ln-white leading-[1.1]"
+                                        className="text-base sm:text-lg md:text-xl lg:text-2xl text-ln-white leading-[1.1]"
                                     />
                                 ))}
                             </nav>

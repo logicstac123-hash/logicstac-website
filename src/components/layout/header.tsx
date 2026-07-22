@@ -86,17 +86,17 @@ const MenuButton: React.FC<{ onClick: () => void; isMenuOpen: boolean }> = ({ on
             onClick={onClick}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className="menu-button group bg-ln-white p-[0.7rem] md:p-[0.95rem] hover:bg-ln-offwhite transition-all duration-300 flex items-center justify-center border-none shadow-none cursor-pointer aspect-square rounded-[0.5rem] hover:scale-105 active:scale-95 z-50 relative"
+            className="menu-button group bg-ln-white p-2.5 sm:p-[0.7rem] md:p-[0.95rem] hover:bg-ln-offwhite transition-all duration-300 flex items-center justify-center border-none shadow-none cursor-pointer aspect-square rounded-[0.6rem] hover:scale-105 active:scale-95 z-50 relative"
             aria-label="Toggle Menu"
         >
-            <div className="menu-inner flex flex-col gap-[0.35rem] w-[1.4rem] md:w-[1.7rem]">
+            <div className="menu-inner flex flex-col gap-[0.25rem] sm:gap-[0.35rem] w-[1.1rem] sm:w-[1.4rem] md:w-[1.7rem]">
                 <div
                     ref={topBarRef}
-                    className="h-[2.5px] w-[60%] bg-ln-deep-forest self-end rounded-full origin-center"
+                    className="h-[2px] sm:h-[2.5px] w-[60%] bg-ln-deep-forest self-end rounded-full origin-center"
                 ></div>
                 <div
                     ref={bottomBarRef}
-                    className="h-[2.5px] w-[60%] bg-ln-deep-forest self-start rounded-full origin-center"
+                    className="h-[2px] sm:h-[2.5px] w-[60%] bg-ln-deep-forest self-start rounded-full origin-center"
                 ></div>
             </div>
         </button>
@@ -143,19 +143,19 @@ const Header: React.FC = () => {
         });
 
         shrinkTl.to(headerRef.current, {
-            paddingTop: '0.6rem',
-            paddingBottom: '0.6rem',
+            paddingTop: '0.5rem',
+            paddingBottom: '0.5rem',
             duration: 1,
             ease: 'none'
         }, 0)
             .to(logoRef.current?.querySelectorAll('span') || [], {
-                fontSize: window.innerWidth >= 768 ? '2rem' : '1.6rem',
+                fontSize: window.innerWidth >= 768 ? '1.8rem' : '1.0rem',
                 duration: 1,
                 ease: 'none'
             }, 0)
             .to('.store-button', {
-                paddingTop: window.innerWidth >= 768 ? '0.85rem' : '0.7rem',
-                paddingBottom: window.innerWidth >= 768 ? '0.85rem' : '0.7rem',
+                paddingTop: window.innerWidth >= 768 ? '0.85rem' : '0.5rem',
+                paddingBottom: window.innerWidth >= 768 ? '0.85rem' : '0.5rem',
                 duration: 1,
                 ease: 'none'
             }, 0)
@@ -166,17 +166,17 @@ const Header: React.FC = () => {
                 ease: 'none'
             }, 0)
             .to('.store-button-text', {
-                fontSize: window.innerWidth >= 768 ? '0.95rem' : '0.85rem',
+                fontSize: window.innerWidth >= 768 ? '0.95rem' : '0.8rem',
                 duration: 1,
                 ease: 'none'
             }, 0)
             .to('.menu-button', {
-                padding: window.innerWidth >= 768 ? '0.75rem' : '0.55rem',
+                padding: window.innerWidth >= 768 ? '0.75rem' : '0.5rem',
                 duration: 1,
                 ease: 'none'
             }, 0)
             .to('.menu-inner', {
-                width: window.innerWidth >= 768 ? '1.5rem' : '1.2rem',
+                width: window.innerWidth >= 768 ? '1.5rem' : '1.0rem',
                 duration: 1,
                 ease: 'none'
             }, 0);
@@ -289,7 +289,7 @@ const Header: React.FC = () => {
                         handleScrollTo(href);
                     }, 500);
                 }}
-                className="drawer-link-item flex items-baseline gap-6 font-display font-black text-4xl md:text-6xl lg:text-7xl uppercase text-white hover:text-ln-yellow transition-colors duration-200 py-2 select-none relative overflow-hidden"
+                className="drawer-link-item flex items-baseline gap-4 md:gap-6 font-display font-black text-3xl sm:text-4xl md:text-6xl lg:text-7xl uppercase text-white hover:text-ln-yellow transition-colors duration-200 py-1.5 md:py-2 select-none relative overflow-hidden"
             >
                 <span className="text-xs font-mono font-bold text-ln-yellow/60">{number}</span>
                 <div className="relative h-[1.15em] overflow-hidden flex items-center">
@@ -320,20 +320,20 @@ const Header: React.FC = () => {
                 <div ref={logoRef} className="flex-shrink-0 pointer-events-auto leading-[0.85] z-10">
                     <a
                         href="/"
-                        className={`flex flex-col items-start group px-3.5 py-2 rounded-xl backdrop-blur-md border transition-all duration-500 ${
+                        className={`flex flex-col items-start group px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-[0.6rem] sm:rounded-xl backdrop-blur-md border transition-all duration-500 ${
                             isDarkSection
                                 ? 'bg-black/60 border-white/20 shadow-lg hover:bg-black/80'
                                 : 'bg-white/80 border-black/5 shadow-sm hover:bg-white/95'
                         }`}
                     >
-                        <span className={`font-serif uppercase tracking-tight text-[1.6rem] md:text-[1.9rem] transition-colors duration-500 ${
+                        <span className={`font-serif uppercase tracking-tight text-[1.15rem] sm:text-[1.4rem] md:text-[1.9rem] leading-[0.85] transition-colors duration-500 ${
                             isDarkSection
                                 ? 'text-white group-hover:text-ln-yellow'
                                 : 'text-ln-deep-forest group-hover:text-ln-yellow'
                         }`}>
                             LOGIC
                         </span>
-                        <span className={`font-sans font-black uppercase tracking-tight text-[1.6rem] md:text-[1.9rem] transition-colors duration-500 ${
+                        <span className={`font-sans font-black uppercase tracking-tight text-[1.15rem] sm:text-[1.4rem] md:text-[1.9rem] leading-[0.85] transition-colors duration-500 ${
                             isDarkSection
                                 ? 'text-ln-yellow group-hover:text-white'
                                 : 'text-ln-yellow group-hover:text-ln-deep-forest'
@@ -346,7 +346,7 @@ const Header: React.FC = () => {
                 {/* Center - Desktop Navigation Links (Absolutely centered) */}
                 <div
                     ref={linksRef}
-                    className="hidden md:flex items-center gap-10 bg-ln-white/80 backdrop-blur-md px-8 py-3.5 rounded-full border border-ln-deep-forest/5 shadow-sm pointer-events-auto absolute left-1/2 -translate-x-1/2 z-10"
+                    className="hidden xl:flex items-center gap-6 xl:gap-8 bg-ln-white/80 backdrop-blur-md px-6 py-2.5 rounded-full border border-ln-deep-forest/5 shadow-sm pointer-events-auto absolute left-1/2 -translate-x-1/2 z-10"
                 >
                     {[
                         { label: 'Home', target: '#home' },
@@ -377,7 +377,7 @@ const Header: React.FC = () => {
                 </div>
 
                 {/* Right Actions */}
-                <div ref={actionsRef} className="flex items-center gap-[0.9rem] pointer-events-auto">
+                <div ref={actionsRef} className="flex items-center gap-2 sm:gap-3 pointer-events-auto">
                     <AnimatedTextButton
                         text="Get In Touch"
                         href="#contact-form"
@@ -386,9 +386,9 @@ const Header: React.FC = () => {
                         }}
                         icon="/images/logos-icons/collab.svg"
                         iconAlt="Get In Touch"
-                        className="store-button group flex items-center gap-[0.55rem] bg-ln-yellow text-ln-deep-forest px-[1.6rem] md:px-[2rem] py-[0.95rem] md:py-[1.1rem] font-sans font-black uppercase tracking-tight hover:brightness-105 hover:scale-105 active:scale-95 transition-all duration-300 rounded-[0.6rem] shadow-none border-none cursor-pointer"
-                        iconClassName="store-button-icon w-[1.2rem] h-[1.2rem]"
-                        textClassName="store-button-text text-[0.95rem] md:text-[1.05rem]"
+                        className="store-button group flex items-center gap-1.5 sm:gap-2 bg-ln-yellow text-ln-deep-forest px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 font-sans font-black uppercase tracking-tight hover:brightness-105 hover:scale-105 active:scale-95 transition-all duration-300 rounded-[0.6rem] sm:rounded-xl shadow-none border-none cursor-pointer whitespace-nowrap"
+                        iconClassName="store-button-icon w-3.5 h-3.5 sm:w-4 sm:h-4"
+                        textClassName="store-button-text text-xs sm:text-sm font-black whitespace-nowrap"
                     />
                     <MenuButton
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -400,7 +400,7 @@ const Header: React.FC = () => {
             {/* FULL-SCREEN NAVIGATION OVERLAY DRAWER */}
             <div
                 ref={menuOverlayRef}
-                className="fixed inset-0 z-40 hidden flex-col justify-between p-8 md:p-16 pointer-events-auto"
+                className="fixed inset-0 z-40 hidden flex-col justify-between p-6 sm:p-8 md:p-16 pointer-events-auto overflow-y-auto max-h-screen"
             >
                 {/* Background color block with noise mask */}
                 <div

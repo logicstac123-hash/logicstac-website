@@ -9,9 +9,10 @@ const TrackMode: React.FC = () => {
   const offTrackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const isMobile = window.innerWidth < 768;
     const ctx = gsap.context(() => {
       gsap.from(onTrackRef.current, {
-        x: -100,
+        x: isMobile ? -20 : -100,
         opacity: 0,
         duration: 1,
         ease: 'power3.out',
@@ -22,7 +23,7 @@ const TrackMode: React.FC = () => {
       });
 
       gsap.from(offTrackRef.current, {
-        x: 100,
+        x: isMobile ? 20 : 100,
         opacity: 0,
         duration: 1,
         ease: 'power3.out',
@@ -37,19 +38,19 @@ const TrackMode: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full py-24 bg-ln-cream text-ln-dark overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
+    <section ref={sectionRef} className="relative w-full py-16 md:py-24 bg-ln-cream text-ln-dark overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
 
         {/* On Track - Left Side */}
-        <div ref={onTrackRef} className="flex flex-col items-center group cursor-pointer relative hover:scale-105 transition-transform duration-500">
+        <div ref={onTrackRef} className="flex flex-col items-center group cursor-pointer relative hover:scale-[1.02] md:hover:scale-105 transition-transform duration-500">
 
           {/* Typography */}
-          <div className="relative mb-12 text-center">
-            <span className="absolute -top-8 left-[40%] font-script text-6xl text-ln-yellow z-20 rotate-[-12deg] mix-blend-multiply opacity-90">Web</span>
-            <h3 className="font-display font-bold text-7xl md:text-[8rem] leading-[0.8] tracking-tighter uppercase relative z-10">
+          <div className="relative mb-8 md:mb-12 text-center">
+            <span className="absolute -top-6 sm:-top-8 left-[35%] sm:left-[40%] font-script text-4xl sm:text-6xl text-ln-yellow z-20 rotate-[-12deg] mix-blend-multiply opacity-90">Web</span>
+            <h3 className="font-display font-bold text-5xl sm:text-7xl md:text-[8rem] leading-[0.8] tracking-tighter uppercase relative z-10">
               Design
             </h3>
-            <p className="font-sans text-sm text-gray-600 mt-6 max-w-xs mx-auto">
+            <p className="font-sans text-xs sm:text-sm text-gray-600 mt-4 sm:mt-6 max-w-xs mx-auto">
               Cutting-edge user interfaces and immersive digital experiences.
             </p>
             <div className="mt-4 flex justify-center">
@@ -74,18 +75,18 @@ const TrackMode: React.FC = () => {
         </div>
 
         {/* Off Track - Right Side */}
-        <div ref={offTrackRef} className="flex flex-col items-center group cursor-pointer relative mt-12 md:mt-0 hover:scale-105 transition-transform duration-500">
+        <div ref={offTrackRef} className="flex flex-col items-center group cursor-pointer relative mt-8 md:mt-0 hover:scale-[1.02] md:hover:scale-105 transition-transform duration-500">
 
           {/* Typography */}
-          <div className="relative mb-12 text-center">
-            <span className="absolute -top-10 left-[45%] font-script text-6xl text-ln-yellow z-20 rotate-[5deg] mix-blend-multiply opacity-90">App</span>
+          <div className="relative mb-8 md:mb-12 text-center">
+            <span className="absolute -top-8 sm:-top-10 left-[40%] sm:left-[45%] font-script text-4xl sm:text-6xl text-ln-yellow z-20 rotate-[5deg] mix-blend-multiply opacity-90">App</span>
             <div className="flex flex-col items-center">
-              <span className="font-serif italic text-6xl md:text-7xl leading-none">Full</span>
-              <h3 className="font-display font-bold text-7xl md:text-[8rem] leading-[0.7] tracking-tighter uppercase relative z-10">
+              <span className="font-serif italic text-4xl sm:text-6xl md:text-7xl leading-none">Full</span>
+              <h3 className="font-display font-bold text-5xl sm:text-7xl md:text-[8rem] leading-[0.7] tracking-tighter uppercase relative z-10">
                 Stack
               </h3>
             </div>
-            <p className="font-sans text-sm text-gray-600 mt-6 max-w-xs mx-auto">
+            <p className="font-sans text-xs sm:text-sm text-gray-600 mt-4 sm:mt-6 max-w-xs mx-auto">
               Robust development and scalable architecture for modern products.
             </p>
             <div className="mt-4 flex justify-center">

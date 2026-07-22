@@ -87,7 +87,7 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <section id="contact-form" ref={sectionRef} className="w-full bg-ln-cream text-ln-dark py-32 px-6 relative z-30 overflow-hidden border-t border-gray-200">
+    <section id="contact-form" ref={sectionRef} className="w-full bg-ln-cream text-ln-dark py-16 md:py-32 px-4 md:px-6 relative z-30 overflow-hidden border-t border-gray-200">
       <div className="absolute inset-0 bg-image-noise opacity-5 pointer-events-none" />
 
       {/* Background Graphic Curves */}
@@ -101,30 +101,30 @@ const ContactForm: React.FC = () => {
       <div className="max-w-[1000px] mx-auto relative z-10">
 
         {/* Header Block */}
-        <div className="flex flex-col items-center text-center mb-16 reveal-form-item">
+        <div className="flex flex-col items-center text-center mb-12 md:mb-16 reveal-form-item">
           <div className="inline-flex items-center gap-2 bg-ln-yellow/10 border border-ln-yellow/20 px-4 py-1.5 rounded-full mb-6">
             <Sparkles className="w-4 h-4 text-ln-yellow animate-pulse" />
             <span className="text-[10px] font-mono tracking-widest uppercase text-ln-dark">Initiate Scope</span>
           </div>
 
-          <h2 className="font-display font-bold text-5xl md:text-7xl tracking-tighter uppercase leading-none mb-6">
+          <h2 className="font-display font-bold text-3xl sm:text-5xl md:text-7xl tracking-tighter uppercase leading-none mb-6">
             Start A <span className="text-ln-yellow font-serif font-normal italic lowercase">Project</span>
           </h2>
 
-          <p className="max-w-xl text-gray-600 font-sans text-sm md:text-base leading-relaxed">
+          <p className="max-w-xl text-gray-600 font-sans text-xs sm:text-sm md:text-base leading-relaxed">
             Fill out the scope details below to kick off your project with our engineering and design leads. We reply within 24 hours.
           </p>
         </div>
 
         {/* Interactive Form */}
-        <form ref={formRef} onSubmit={handleSubmit} className="space-y-12">
+        <form ref={formRef} onSubmit={handleSubmit} className="space-y-8 md:space-y-12">
 
           {/* Services Selector */}
           <div className="space-y-4 reveal-form-item">
             <label className="block text-xs font-mono font-bold uppercase tracking-wider text-gray-500">
               I'm interested in... (Select any)
             </label>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2 md:gap-3">
               {servicesList.map((service, idx) => {
                 const isSelected = selectedServices.includes(service);
                 return (
@@ -132,7 +132,7 @@ const ContactForm: React.FC = () => {
                     key={idx}
                     type="button"
                     onClick={() => handleServiceToggle(service)}
-                    className={`px-5 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${
+                    className={`px-3.5 py-2.5 md:px-5 md:py-3 rounded-full text-[11px] md:text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${
                       isSelected
                         ? 'bg-ln-yellow text-black border-ln-yellow shadow-lg scale-105'
                         : 'bg-white text-ln-dark border-gray-200 hover:border-ln-yellow/50'

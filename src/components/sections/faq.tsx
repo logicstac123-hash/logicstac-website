@@ -157,10 +157,10 @@ const FAQSection: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="w-full bg-ln-cream text-ln-dark py-24 px-6 relative z-30 overflow-hidden border-t border-gray-200">
+    <section id="faq" className="w-full bg-ln-cream text-ln-dark py-16 md:py-24 px-4 md:px-6 relative z-30 overflow-hidden border-t border-gray-200">
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-16">
+        <div className="flex flex-col items-center text-center mb-12 md:mb-16">
           <div className="inline-flex items-center gap-2 bg-black text-white px-4 py-1.5 rounded-full mb-4 border border-ln-yellow/30">
             <HelpCircle size={14} className="text-ln-yellow" />
             <span className="font-mono text-xs uppercase tracking-widest font-bold text-ln-yellow">
@@ -168,7 +168,7 @@ const FAQSection: React.FC = () => {
             </span>
           </div>
 
-          <h2 className="font-display font-black text-3xl md:text-5xl lg:text-6xl uppercase tracking-tight text-ln-dark mb-4">
+          <h2 className="font-display font-black text-2xl sm:text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight text-ln-dark mb-4">
             Frequently Asked <span className="text-ln-yellow italic font-serif lowercase font-normal">Questions</span>
           </h2>
           <p className="max-w-xl text-gray-600 text-sm md:text-base leading-relaxed">

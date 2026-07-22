@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
     <section
       id="home"
       ref={containerRef}
-      className="relative w-full h-screen min-h-[45rem] bg-black overflow-hidden flex flex-col items-center justify-between pt-24 pb-12 cursor-crosshair"
+      className="relative w-full h-screen min-h-[35rem] bg-black overflow-hidden flex flex-col items-center justify-end pb-6 sm:pb-10 cursor-crosshair"
     >
       {/* Background Video Layer - Full Crisp Video */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
           className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none opacity-100"
         />
         {/* Subtle Gradient Overlays for UI contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/70 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/80 pointer-events-none" />
       </div>
 
       {/* Animated Background Curves */}

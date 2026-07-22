@@ -223,31 +223,31 @@ const Helmets: React.FC = () => {
   };
 
   return (
-    <section id="showcase" ref={sectionRef} className="w-full bg-[#111] text-white py-32 px-6 relative z-30">
+    <section id="showcase" ref={sectionRef} className="w-full bg-[#111] text-white py-16 md:py-32 px-4 md:px-6 relative z-30">
       <div className="max-w-[1400px] mx-auto">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-20">
           <div className="relative">
-            <h2 className="font-display font-bold text-6xl md:text-8xl tracking-tighter uppercase leading-none">
+            <h2 className="font-display font-bold text-4xl sm:text-6xl md:text-8xl tracking-tighter uppercase leading-none">
               Project<br />
               <span className="text-ln-yellow font-serif font-normal italic lowercase">Showcase</span>
             </h2>
           </div>
-          <div className="max-w-md mt-8 md:mt-0 text-gray-400 text-sm font-sans border-l border-gray-700 pl-6">
+          <div className="max-w-md mt-6 md:mt-0 text-gray-400 text-xs sm:text-sm font-sans border-l border-gray-700 pl-4 md:pl-6">
             <p>Explore a collection of our finest work, spanning bespoke web applications, enterprise design systems, immersive 3D portals, and next-generation product design.</p>
           </div>
         </div>
 
         {/* Animated Filter Bar */}
-        <div className="flex flex-wrap gap-2.5 mb-16 border-b border-gray-800 pb-8">
+        <div className="flex flex-wrap gap-2 md:gap-2.5 mb-12 md:mb-16 border-b border-gray-800 pb-6 md:pb-8">
           {categories.map((cat, i) => {
             const isSelected = selectedCategory === cat;
             return (
               <button
                 key={i}
                 onClick={() => handleCategorySelect(cat)}
-                className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${
+                className={`px-3.5 py-2 md:px-5 md:py-2.5 rounded-full text-[11px] md:text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${
                   isSelected
                     ? 'bg-ln-yellow text-black border-ln-yellow font-black shadow-lg hover:scale-105'
                     : 'bg-transparent border-gray-800 text-gray-400 hover:border-gray-600 hover:text-white'
@@ -346,7 +346,7 @@ const Helmets: React.FC = () => {
         {/* Modal content container */}
         <div
           ref={modalContentRef}
-          className="relative w-full max-w-4xl bg-[#151713] border border-gray-800 rounded-2xl overflow-hidden shadow-2xl z-10 flex flex-col md:flex-row min-h-[400px] md:h-[550px] pointer-events-auto select-text text-white"
+          className="relative w-full max-w-4xl bg-[#151713] border border-gray-800 rounded-2xl overflow-hidden shadow-2xl z-10 flex flex-col md:flex-row max-h-[85vh] md:max-h-[90vh] md:h-[550px] pointer-events-auto select-text text-white overflow-y-auto"
         >
           {/* Image Pane */}
           <div className="w-full md:w-1/2 bg-ln-dark/80 p-8 flex items-center justify-center border-b md:border-b-0 md:border-r border-gray-800 relative group">

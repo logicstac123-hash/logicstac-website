@@ -90,29 +90,35 @@ const HorizontalScroll: React.FC = () => {
       <div className="absolute bottom-[20%] left-[15%] w-2 h-2 rounded-full bg-ln-yellow opacity-25 blur-sm animate-pulse pointer-events-none z-5" style={{ animationDelay: '2s' }}></div>
 
       {/* Mobile: Vertical Grid */}
-      <div className="lg:hidden grid grid-cols-2 gap-4 px-4">
-        {horizontalItems.slice(0, 6).map((item, index) => (
-          <div
-            key={index}
-            className={`relative aspect-[3/4] overflow-hidden rounded-lg shadow-xl ${index === 2 || index === 5 ? 'col-span-2' : ''
-              }`}
-          >
-            <img
-              src={item.image}
-              loading="lazy"
-              className="w-full h-full object-cover"
-              alt={item.title}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
-              <span className="text-[8px] uppercase font-bold tracking-widest text-ln-yellow mb-1">
-                {item.subtitle}
-              </span>
-              <span className="text-[10px] uppercase font-bold tracking-widest text-white">
-                {item.title}
-              </span>
+      <div className="lg:hidden flex flex-col gap-6 px-4">
+        <div className="text-center mb-4">
+          <p className="font-serif text-lg sm:text-xl leading-tight text-ln-cream">
+            It doesn't matter <span className="italic font-bold text-ln-yellow">where</span> you start, it's <span className="italic font-bold text-ln-yellow">how</span> you progress.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {horizontalItems.map((item, index) => (
+            <div
+              key={index}
+              className="relative aspect-[4/3] sm:aspect-[3/4] overflow-hidden rounded-xl shadow-xl border border-white/10"
+            >
+              <img
+                src={item.image}
+                loading="lazy"
+                className="w-full h-full object-cover"
+                alt={item.title}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-4">
+                <span className="text-[10px] uppercase font-bold tracking-widest text-ln-yellow mb-1">
+                  {item.subtitle}
+                </span>
+                <span className="text-xs uppercase font-bold tracking-widest text-white">
+                  {item.title}
+                </span>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {/* Desktop: Horizontal Scroll Viewport */}
