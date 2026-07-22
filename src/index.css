@@ -57,6 +57,14 @@
         font-family: 'Mona Sans Variable';
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        overflow-wrap: break-word;
+        word-break: normal;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        overflow-wrap: normal;
+        word-break: normal;
+        hyphens: manual;
     }
 }
 

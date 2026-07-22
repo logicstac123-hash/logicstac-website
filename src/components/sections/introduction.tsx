@@ -68,18 +68,18 @@ const Introduction: React.FC = () => {
             </svg>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl md:text-7xl lg:text-[7rem] leading-[0.9] md:leading-[0.85] tracking-tight uppercase max-w-full md:max-w-[90%] lg:max-w-[85%] mx-auto font-display font-bold">
+          <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-[6.5rem] leading-[1.05] sm:leading-[0.95] md:leading-[0.85] tracking-tight uppercase max-w-full md:max-w-[92%] lg:max-w-[88%] mx-auto font-display font-bold">
             {(() => {
-              let letterIndex = 0;
+              let globalLetterIndex = 0;
               const parts = [
-                { text: "Designing", className: "font-serif text-ln-yellow font-normal normal-case italic mr-4" },
+                { text: "Designing ", className: "font-serif text-ln-yellow font-normal normal-case italic" },
                 { text: "Future,", className: "stroke-text" },
                 { text: "\nBuilding for ", className: "" },
                 { text: "Scale,", className: "text-ln-yellow" },
                 { text: "\nDelivering High ", className: "" },
                 { text: "\nImpact Solutions. Shaping A ", className: "" },
-                { text: "Digital", className: "text-ln-yellow font-serif font-normal normal-case italic" },
-                { text: " World ", className: "" },
+                { text: "Digital ", className: "text-ln-yellow font-serif font-normal normal-case italic" },
+                { text: "World ", className: "" },
                 { text: "\nOne Pixel At A ", className: "" },
                 { text: "Time.", className: "" },
               ];
@@ -88,23 +88,33 @@ const Introduction: React.FC = () => {
                 const isNewLine = part.text.startsWith('\n');
                 const cleanText = isNewLine ? part.text.slice(1) : part.text;
                 
+                const words = cleanText.split(' ');
+
                 return (
                   <React.Fragment key={partIndex}>
-                    {isNewLine && <br />}
-                    <span className={part.className}>
-                      {cleanText.split('').map((letter, letterIdx) => {
-                        const idx = letterIndex++;
-                        return (
-                          <span
-                            key={letterIdx}
-                            ref={el => { if (el) lettersRef.current[idx] = el }}
-                            className="inline-block"
-                          >
-                            {letter === ' ' ? '\u00A0' : letter}
+                    {isNewLine && <br className="hidden sm:inline" />}
+                    {words.map((word, wordIndex) => {
+                      if (!word) return null;
+                      return (
+                        <React.Fragment key={wordIndex}>
+                          <span className={`inline-block whitespace-nowrap ${part.className}`}>
+                            {word.split('').map((letter, letterIdx) => {
+                              const idx = globalLetterIndex++;
+                              return (
+                                <span
+                                  key={letterIdx}
+                                  ref={el => { if (el) lettersRef.current[idx] = el; }}
+                                  className="inline-block"
+                                >
+                                  {letter}
+                                </span>
+                              );
+                            })}
                           </span>
-                        );
-                      })}
-                    </span>
+                          {' '}
+                        </React.Fragment>
+                      );
+                    })}
                   </React.Fragment>
                 );
               });
