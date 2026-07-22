@@ -35,28 +35,28 @@ const Partners: React.FC = () => {
     ];
 
     return (
-        <section ref={sectionRef} className="w-full py-32 bg-ln-cream border-t border-gray-200 relative overflow-hidden">
+        <section ref={sectionRef} className="w-full py-12 sm:py-20 md:py-28 bg-ln-cream border-t border-gray-200 relative overflow-hidden">
 
             {/* Background Large Script */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center z-0 pointer-events-none select-none">
-                <span className="font-script text-[25vw] text-ln-yellow opacity-90 -rotate-12 block leading-none mix-blend-multiply blur-[1px]">Clients</span>
+                <span className="font-script text-[20vw] sm:text-[22vw] md:text-[25vw] text-ln-yellow opacity-90 -rotate-12 block leading-none mix-blend-multiply blur-[1px]">Clients</span>
             </div>
 
             <div className="max-w-[1400px] mx-auto px-6 relative z-10">
 
                 {/* Header */}
-                <div className="flex flex-col md:flex-row justify-between items-start mb-20">
-                    <h3 className="font-display font-bold text-5xl md:text-6xl uppercase leading-[0.9]">
+                <div className="flex flex-col md:flex-row justify-between items-start mb-10 sm:mb-16 md:mb-20">
+                    <h3 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl uppercase leading-[0.9]">
                         Trusted<br />
-                        <span className="font-serif font-normal italic lowercase text-4xl">& Partners</span>
+                        <span className="font-serif font-normal italic lowercase text-3xl sm:text-4xl">& Partners</span>
                     </h3>
-                    <p className="max-w-xs text-xs font-sans mt-6 md:mt-0 text-gray-500 leading-relaxed">
+                    <p className="max-w-xs text-xs font-sans mt-4 md:mt-0 text-gray-500 leading-relaxed">
                         LogicStac is proud to collaborate with industry leaders and visionary startups to deliver exceptional digital products.
                     </p>
                 </div>
 
                 {/* Logos Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-12 items-center">
                     {partners.map((partner, idx) => (
                         <div
                             key={idx}

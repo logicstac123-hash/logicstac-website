@@ -120,10 +120,10 @@ const Footer = () => {
     };
 
     return (
-        <footer id="contact" className="relative w-full pt-24 px-4 bg-gradient-to-b from-ln-cream to-ln-yellow min-h-[800px]" >
+        <footer id="contact" className="relative w-full pt-6 sm:pt-12 md:pt-16 pb-8 px-3 sm:px-4 bg-gradient-to-b from-ln-cream via-ln-yellow/60 to-ln-yellow">
             {/* Main masked container */}
             <div
-                className="relative w-full h-[800px] flex flex-col items-center overflow-visible rounded-t-[4rem]"
+                className="relative w-full min-h-0 md:h-[780px] lg:h-[800px] flex flex-col items-center justify-between py-10 px-4 md:p-0 overflow-hidden rounded-3xl md:rounded-t-[4rem] gap-8 md:gap-0"
                 style={{
                     maskImage: 'url("/images/masks/footer-desktop-mask.svg")',
                     WebkitMaskImage: 'url("/images/masks/footer-desktop-mask.svg")',
@@ -150,18 +150,18 @@ const Footer = () => {
                 />
 
                 {/* Title and signature - repositioned for mobile and desktop */}
-                <div className="absolute top-[5rem] sm:top-[8rem] md:top-[12rem] left-1/2 -translate-x-1/2 w-full max-w-7xl px-4 text-center z-[1]">
+                <div className="relative md:absolute md:top-[5rem] lg:top-[8rem] md:left-1/2 md:-translate-x-1/2 w-full max-w-7xl px-4 text-center z-[1]">
                     <div className="absolute -top-24 left-1/2 -translate-x-1/2 -rotate-[5deg] w-64 md:w-[12vw] z-[-1] pointer-events-none select-none mix-blend-multiply">
                     </div>
-                    <h2 className="text-white relative z-10 text-[1.8rem] sm:text-[3rem] md:text-[4rem] lg:text-[5rem] xl:text-[5.5rem] font-sans font-black leading-[0.9] md:leading-[0.8] tracking-[-0.04em] uppercase font-semibold">
+                    <h2 className="text-white relative z-10 text-[1.8rem] sm:text-[3rem] md:text-[4rem] lg:text-[5rem] xl:text-[5.5rem] font-sans font-black leading-[0.95] md:leading-[0.8] tracking-[-0.04em] uppercase font-semibold">
                         LOGICSTAC <span className="text-ln-yellow font-serif font-normal">DIGITAL</span> <br />
                         <span className="text-ln-yellow font-serif font-normal">AGENCY.</span>
                     </h2>
                 </div>
 
                 {/* Navigation */}
-                <div className="absolute top-[48%] -translate-y-1/2 left-0 right-0 z-20">
-                    <div className="w-full max-w-[82.5rem] mx-auto px-4 sm:px-12 flex justify-around sm:justify-between items-center">
+                <div className="relative md:absolute md:top-[48%] md:-translate-y-1/2 md:left-0 md:right-0 z-20 w-full">
+                    <div className="w-full max-w-[82.5rem] mx-auto px-4 sm:px-12 flex justify-around sm:justify-between items-start md:items-center">
                         {/* PAGES */}
                         <div className="flex flex-col gap-2 sm:gap-3 items-center text-center">
                             <span className="text-white/30 text-[0.55rem] uppercase font-bold tracking-[0.3em] font-sans">PAGES</span>
@@ -171,7 +171,7 @@ const Footer = () => {
                                         key={link}
                                         text={link}
                                         href={`#${link === 'PORTFOLIO' ? 'showcase' : link.toLowerCase()}`}
-                                        className="text-base sm:text-lg md:text-xl lg:text-2xl text-ln-white leading-[1.1]"
+                                        className="text-sm sm:text-lg md:text-xl lg:text-2xl text-ln-white leading-[1.1]"
                                     />
                                 ))}
                                 <RollingLink
@@ -191,7 +191,7 @@ const Footer = () => {
                                         key={link}
                                         text={link}
                                         href={`#${link}`}
-                                        className="text-base sm:text-lg md:text-xl lg:text-2xl text-ln-white leading-[1.1]"
+                                        className="text-sm sm:text-lg md:text-xl lg:text-2xl text-ln-white leading-[1.1]"
                                     />
                                 ))}
                             </nav>
@@ -200,7 +200,7 @@ const Footer = () => {
                 </div>
 
                 {/* Business button - centered and downsized */}
-                <div className="absolute bottom-14 left-1/2 -translate-x-1/2 z-30">
+                <div className="relative md:absolute md:bottom-20 lg:bottom-24 md:left-1/2 md:-translate-x-1/2 z-30">
                     <button
                         onClick={() => {
                             const contactElement = document.getElementById('contact-form');
@@ -208,24 +208,24 @@ const Footer = () => {
                                 contactElement.scrollIntoView({ behavior: 'smooth' });
                             }
                         }}
-                        className="bg-ln-yellow text-black px-7 py-2.5 rounded-lg font-sans font-black text-[0.6875rem] tracking-wider flex items-center gap-2 hover:shadow-[0_0_2rem_rgba(210,255,0,0.3)] transition-shadow duration-400 cursor-pointer uppercase border-none"
+                        className="bg-ln-yellow text-black px-6 sm:px-7 py-2.5 rounded-lg font-sans font-black text-[0.6875rem] tracking-wider flex items-center gap-2 hover:shadow-[0_0_2rem_rgba(210,255,0,0.3)] transition-all duration-300 cursor-pointer uppercase border-none active:scale-95"
                     >
                         START A PROJECT <span className="text-sm">⤴</span>
                     </button>
                 </div>
 
                 {/* Marquee - Correctly positioned at bottom of dark area */}
-                <div className="absolute bottom-16 md:bottom-24 w-full overflow-hidden z-5">
+                <div className="relative md:absolute md:bottom-6 lg:bottom-10 w-full overflow-hidden z-5">
                     <div
                         ref={marqueeRef}
-                        className="flex whitespace-nowrap gap-10 md:gap-16 items-center justify-start min-w-max px-10 md:px-20"
+                        className="flex whitespace-nowrap gap-8 md:gap-16 items-center justify-start min-w-max px-6 md:px-20"
                     >
                         {[...logos, ...logos, ...logos].map((logo, idx) => (
                             <img
                                 key={idx}
                                 src={logo.src}
                                 alt={logo.alt}
-                                className="h-8 md:h-10 w-auto object-contain hover:brightness-125 transition-all duration-300"
+                                className="h-6 sm:h-8 md:h-10 w-auto object-contain hover:brightness-125 transition-all duration-300"
                                 style={{
                                     filter: 'brightness(0) saturate(100%) invert(51%) sepia(88%) saturate(2852%) hue-rotate(359deg)'
                                 }}
@@ -235,12 +235,14 @@ const Footer = () => {
                 </div>
             </div>
 
-            {/* Legal bar - Matching detail: tight tracking on links */}
-            <div className="relative absolute bottom-8 w-full px-2  flex flex-col md:flex-row justify-between items-center gap-4 z-30">
-                <p className="text-black text-[8px] font-bold uppercase font-sans "> <b> © 2025 LOGICSTAC.  </b> ALL RIGHTS RESERVED</p>
-                <div className="flex gap-2 font-sans font-extrabold text-black text-[13px] uppercase tracking-tight">
-                    <a href="/privacy" className=" uppercase ">PRIVACY POLICY</a>
-                    <a href="/terms" className=" uppercase ">TERMS</a>
+            {/* Legal bar - Matching detail */}
+            <div className="w-full max-w-7xl mx-auto mt-6 sm:mt-8 px-4 flex flex-col sm:flex-row justify-between items-center gap-3 z-30">
+                <p className="text-black text-[10px] sm:text-xs font-bold uppercase font-sans text-center sm:text-left">
+                    <b>© 2025 LOGICSTAC.</b> ALL RIGHTS RESERVED
+                </p>
+                <div className="flex gap-4 font-sans font-extrabold text-black text-xs sm:text-sm uppercase tracking-tight">
+                    <a href="/privacy" className="hover:underline">PRIVACY POLICY</a>
+                    <a href="/terms" className="hover:underline">TERMS</a>
                 </div>
             </div>
         </footer>
