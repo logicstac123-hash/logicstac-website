@@ -353,6 +353,8 @@ const Header: React.FC = () => {
                         { label: 'Services', target: '#services' },
                         { label: 'Showcase', target: '#showcase' },
                         { label: 'Pricing', target: '#pricing' },
+                        { label: 'Reviews', target: '#testimonials' },
+                        { label: 'Journal', target: '#blog' },
                         { label: 'Store', target: '#helmets' },
                     ].map((item, idx) => (
                         <a
@@ -451,7 +453,9 @@ const Header: React.FC = () => {
                         <RollingDrawerLink number="02" text="SERVICES" href="#services" />
                         <RollingDrawerLink number="03" text="PORTFOLIO" href="#showcase" />
                         <RollingDrawerLink number="04" text="PRICING" href="#pricing" />
-                        <RollingDrawerLink number="05" text="CONTACT" href="#contact-form" />
+                        <RollingDrawerLink number="05" text="REVIEWS" href="#testimonials" />
+                        <RollingDrawerLink number="06" text="JOURNAL" href="#blog" />
+                        <RollingDrawerLink number="07" text="CONTACT" href="#contact-form" />
                     </div>
 
                     {/* Meta info columns */}

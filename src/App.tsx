@@ -9,6 +9,8 @@ import HorizontalScroll from './components/sections/horizontal-scroll/index';
 import TrackMode from './components/sections/track-mode';
 import Helmets from './components/sections/helmets';
 import Pricing from './components/sections/pricing';
+import Testimonials from './components/sections/testimonials';
+import BlogSection from './components/sections/blog';
 import FAQSection from './components/sections/faq';
 import ContactForm from './components/sections/contact-form';
 import Partners from './components/sections/partners';
@@ -72,6 +74,8 @@ function App() {
                             <TrackMode />
                             <Helmets />
                             <Pricing />
+                            <Testimonials />
+                            <BlogSection />
                             <FAQSection />
                             <ContactForm />
                             <Partners />
