@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Check, HelpCircle, Flame, Zap, Sparkles, ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { scrollToSection } from '../../utils/scroll';
 
 interface PricingFeature {
   text: string;
@@ -231,10 +232,7 @@ const Pricing: React.FC = () => {
               {/* Action Button */}
               <button
                 onClick={() => {
-                  const contactEl = document.getElementById('contact-form') || document.getElementById('contact');
-                  if (contactEl) {
-                    contactEl.scrollIntoView({ behavior: 'smooth' });
-                  }
+                  scrollToSection('#contact-form');
                 }}
                 className={`w-full py-4 rounded-xl font-sans font-bold uppercase text-xs tracking-widest transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
                   tier.popular

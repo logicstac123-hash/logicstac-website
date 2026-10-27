@@ -28,14 +28,14 @@ const Partners: React.FC = () => {
     const partners = [
         { name: 'Ralph Lauren', logo: '/images/logos-icons/ralph-lauren.svg' },
         { name: 'Playstation', logo: '/images/logos-icons/ps5.svg' },
-        { name: 'Quadrant', logo: '/images/logos-icons/quadrant.svg' },
+        { name: 'Google', logo: '/images/logos-icons/google.svg' },
         { name: 'Tumi', logo: '/images/logos-icons/tum.svg' },
         { name: 'Hilton', logo: '/images/logos-icons/hitton.svg' },
         { name: 'Uber', logo: '/images/logos-icons/uber.svg' },
     ];
 
     return (
-        <section ref={sectionRef} className="w-full py-12 sm:py-20 md:py-28 bg-ln-cream border-t border-gray-200 relative overflow-hidden">
+        <section ref={sectionRef} className="w-full py-8 sm:py-16 md:py-28 bg-ln-cream border-t border-gray-200 relative overflow-hidden">
 
             {/* Background Large Script */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center z-0 pointer-events-none select-none">

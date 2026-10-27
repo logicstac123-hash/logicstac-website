@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, X, Sparkles, Code, Layout, Layers } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { scrollToSection } from '../../utils/scroll';
 
 interface Project {
   id: number;
@@ -319,10 +320,7 @@ const Helmets: React.FC = () => {
 
           <button
             onClick={() => {
-              const contactElement = document.getElementById('contact-form') || document.getElementById('contact');
-              if (contactElement) {
-                contactElement.scrollIntoView({ behavior: 'smooth' });
-              }
+              scrollToSection('#contact-form');
             }}
             className="group bg-ln-yellow text-black px-8 py-3 rounded-sm font-bold uppercase text-xs tracking-widest hover:bg-white transition-all duration-300 flex items-center gap-2 hover:scale-105 hover:shadow-2xl cursor-pointer"
           >

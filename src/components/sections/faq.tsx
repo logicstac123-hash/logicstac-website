@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import gsap from 'gsap';
 import { Plus, Minus, HelpCircle, Sparkles, MessageCircle } from 'lucide-react';
+import { scrollToSection } from '../../utils/scroll';
 
 interface FAQItem {
   id: string;
@@ -197,7 +198,11 @@ const FAQSection: React.FC = () => {
           </div>
           <a
             href="#contact-form"
-            className="inline-flex items-center gap-2 bg-black text-white hover:bg-ln-yellow hover:text-black font-mono font-bold uppercase text-xs tracking-wider px-5 py-2.5 rounded-xl transition-all duration-300"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('#contact-form');
+            }}
+            className="inline-flex items-center gap-2 bg-black text-white hover:bg-ln-yellow hover:text-black font-mono font-bold uppercase text-xs tracking-wider px-5 py-2.5 rounded-xl transition-all duration-300 cursor-pointer"
           >
             <MessageCircle size={14} />
             Ask Our Engineers

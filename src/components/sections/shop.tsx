@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { scrollToSection } from '../../utils/scroll';
 
 const Shop: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -39,7 +40,8 @@ const Shop: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full py-24 bg-ln-cream text-ln-dark overflow-hidden">
+    <section id="store" ref={sectionRef} className="w-full py-20 md:py-28 bg-ln-cream text-ln-dark overflow-hidden border-t border-gray-200 relative">
+      <span id="helmets" className="sr-only" />
       <div className="max-w-7xl mx-auto px-6 relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
@@ -49,14 +51,21 @@ const Shop: React.FC = () => {
               <span className="w-2 h-2 bg-black rounded-full animate-pulse"></span>
               <span className="text-xs font-bold uppercase tracking-widest">LogicStac Solutions</span>
             </div>
-            <h2 className="font-display font-bold text-7xl md:text-9xl tracking-tighter uppercase leading-[0.85] mb-8">
+            <h2 className="font-display font-bold text-6xl sm:text-7xl md:text-9xl tracking-tighter uppercase leading-[0.85] mb-8">
               Grow Your<br />
               Business
             </h2>
             <p className="font-sans text-gray-600 max-w-md mb-8">
               We help ambitious brands scale through strategic design and high-performance engineering.
             </p>
-            <a href="#contact" className="group inline-flex items-center gap-2 bg-ln-yellow text-black px-6 py-3 font-bold uppercase text-sm hover:bg-black hover:text-ln-yellow transition-all duration-300 hover:scale-105 hover:shadow-xl">
+            <a
+              href="#contact-form"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('#contact-form');
+              }}
+              className="group inline-flex items-center gap-2 bg-ln-yellow text-black px-6 py-3 font-bold uppercase text-sm hover:bg-black hover:text-ln-yellow transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
+            >
               Get In Touch <ArrowUpRight size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </a>
           </div>

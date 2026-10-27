@@ -8,6 +8,7 @@ import Introduction from './components/sections/introduction';
 import HorizontalScroll from './components/sections/horizontal-scroll/index';
 import TrackMode from './components/sections/track-mode';
 import Helmets from './components/sections/helmets';
+import Shop from './components/sections/shop';
 import Pricing from './components/sections/pricing';
 import Testimonials from './components/sections/testimonials';
 import BlogSection from './components/sections/blog';
@@ -15,6 +16,7 @@ import FAQSection from './components/sections/faq';
 import ContactForm from './components/sections/contact-form';
 import Partners from './components/sections/partners';
 import Footer from './components/layout/footer';
+import { registerScrollSmoother } from './utils/scroll';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -29,6 +31,7 @@ function App() {
                     effects: true,
                     smoothTouch: 0.1,
                 });
+                registerScrollSmoother(smoother);
             }
         } catch (e) {
             console.warn('ScrollSmoother initialization skipped:', e);
@@ -37,6 +40,7 @@ function App() {
         return () => {
             if (smoother && typeof smoother.kill === 'function') {
                 smoother.kill();
+                registerScrollSmoother(null);
             }
         };
     }, []);
@@ -76,6 +80,7 @@ function App() {
                             <Pricing />
                             <Testimonials />
                             <BlogSection />
+                            <Shop />
                             <FAQSection />
                             <ContactForm />
                             <Partners />

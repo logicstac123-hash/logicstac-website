@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Star, Quote, Sparkles, Building2, CheckCircle2, ArrowRight, MessageSquareQuote, ChevronLeft, ChevronRight, ThumbsUp } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { scrollToSection } from '../../utils/scroll';
 
 interface Testimonial {
   id: string;
@@ -382,6 +383,10 @@ export default function Testimonials() {
           </div>
           <a
             href="#contact-form"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('#contact-form');
+            }}
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-ln-deep-forest text-white hover:bg-black font-sans font-bold uppercase tracking-wider text-sm transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg whitespace-nowrap cursor-pointer"
           >
             <span>Start Your Project</span>

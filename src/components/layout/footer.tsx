@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { scrollToSection } from '../../utils/scroll';
 
 const Footer = () => {
     const containerRef = useRef(null);
@@ -14,7 +15,7 @@ const Footer = () => {
         { src: '/images/footer/pap.svg', alt: 'PAP' },
         { src: '/images/footer/google-green.svg', alt: 'Google' },
         { src: '/images/footer/ralph-lauren-green.svg', alt: 'Ralph Lauren' },
-        { src: '/images/footer/quadrant-with-q-black.svg', alt: 'Quadrant' },
+        { src: '/images/footer/signature-big.svg', alt: 'LogicStac Signature' },
         { src: '/images/footer/management.svg', alt: 'Management' },
         { src: '/images/footer/curve-icon.svg', alt: 'Curve' },
         { src: '/images/footer/icon-with-kart-text.svg', alt: 'Kart' },
@@ -99,6 +100,12 @@ const Footer = () => {
             <a
                 ref={linkRef}
                 href={href}
+                onClick={(e) => {
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        scrollToSection(href);
+                    }
+                }}
                 className={`rolling-link relative overflow-hidden h-[1.1em] flex items-center font-display font-black uppercase ${className}`}
             >
                 <div className="flex">
@@ -120,18 +127,10 @@ const Footer = () => {
     };
 
     return (
-        <footer id="contact" className="relative w-full pt-6 sm:pt-12 md:pt-16 pb-8 px-3 sm:px-4 bg-gradient-to-b from-ln-cream via-ln-yellow/60 to-ln-yellow">
+        <footer id="contact" className="relative w-full pt-4 sm:pt-10 md:pt-16 pb-6 sm:pb-8 px-3 sm:px-4 bg-gradient-to-b from-ln-cream via-ln-yellow/60 to-ln-yellow">
             {/* Main masked container */}
             <div
-                className="relative w-full min-h-0 md:h-[780px] lg:h-[800px] flex flex-col items-center justify-between py-10 px-4 md:p-0 overflow-hidden rounded-3xl md:rounded-t-[4rem] gap-8 md:gap-0"
-                style={{
-                    maskImage: 'url("/images/masks/footer-desktop-mask.svg")',
-                    WebkitMaskImage: 'url("/images/masks/footer-desktop-mask.svg")',
-                    maskSize: '100% 100%',
-                    WebkitMaskSize: '100% 100%',
-                    maskRepeat: 'no-repeat',
-                    WebkitMaskRepeat: 'no-repeat',
-                }}
+                className="footer-desktop-mask relative w-full min-h-0 md:h-[780px] lg:h-[800px] flex flex-col items-center justify-between py-8 sm:py-10 px-4 md:p-0 overflow-hidden rounded-3xl md:rounded-t-[4rem] gap-6 md:gap-0"
             >
                 {/* Deep Olive background matching reference */}
                 <div className="absolute inset-0 bg-[#1a1c16] -z-10" />
@@ -203,10 +202,7 @@ const Footer = () => {
                 <div className="relative md:absolute md:bottom-20 lg:bottom-24 md:left-1/2 md:-translate-x-1/2 z-30">
                     <button
                         onClick={() => {
-                            const contactElement = document.getElementById('contact-form');
-                            if (contactElement) {
-                                contactElement.scrollIntoView({ behavior: 'smooth' });
-                            }
+                            scrollToSection('#contact-form');
                         }}
                         className="bg-ln-yellow text-black px-6 sm:px-7 py-2.5 rounded-lg font-sans font-black text-[0.6875rem] tracking-wider flex items-center gap-2 hover:shadow-[0_0_2rem_rgba(210,255,0,0.3)] transition-all duration-300 cursor-pointer uppercase border-none active:scale-95"
                     >

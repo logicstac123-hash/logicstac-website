@@ -40,7 +40,7 @@ const BackgroundCurve: React.FC<BackgroundCurveProps> = ({
     >
       <img
         ref={curveRef}
-        src="/images/green-svgs/background-curve.svg"
+        src="/images/green-svgs/background-green.svg"
         alt=""
         className="w-[120%] h-[120%] object-contain bg-curve max-w-none"
       />

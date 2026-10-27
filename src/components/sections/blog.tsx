@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Sparkles, ArrowUpRight, Clock, Calendar, User, Search, X, Tag, BookOpen, Share2, ThumbsUp, ArrowRight, Check } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { scrollToSection } from '../../utils/scroll';
 
 export interface BlogPost {
   id: string;
@@ -529,7 +530,11 @@ export default function BlogSection() {
 
                 <a
                   href="#contact-form"
-                  onClick={() => setActiveArticle(null)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setActiveArticle(null);
+                    scrollToSection('#contact-form');
+                  }}
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-ln-yellow text-ln-deep-forest font-sans font-bold text-xs uppercase tracking-wider hover:brightness-110 transition-all cursor-pointer whitespace-nowrap"
                 >
                   <span>Build With LogicStac</span>
