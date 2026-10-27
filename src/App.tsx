@@ -16,6 +16,7 @@ import FAQSection from './components/sections/faq';
 import ContactForm from './components/sections/contact-form';
 import Partners from './components/sections/partners';
 import Footer from './components/layout/footer';
+import LegalModal from './components/ui/legal-modal';
 import { registerScrollSmoother } from './utils/scroll';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -67,6 +68,9 @@ function App() {
 
             {/* Header - Outside smooth wrapper for proper fixed positioning */}
             <Header />
+
+            {/* Global Legal Modal */}
+            <LegalModal />
 
             <div id="smooth-wrapper">
                 <div id="smooth-content">

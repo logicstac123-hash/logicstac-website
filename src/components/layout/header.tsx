@@ -5,6 +5,7 @@ import { useGSAP } from '@gsap/react';
 import { X, ArrowRight } from 'lucide-react';
 import AnimatedTextButton from '../ui/animated-text-button';
 import { scrollToSection } from '../../utils/scroll';
+import { openLegalModal } from '../ui/legal-modal';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -150,7 +151,7 @@ const Header: React.FC = () => {
             ease: 'none'
         }, 0)
             .to(logoRef.current?.querySelectorAll('span') || [], {
-                fontSize: window.innerWidth >= 768 ? '1.8rem' : '1.0rem',
+                fontSize: window.innerWidth >= 768 ? '1.15rem' : '0.95rem',
                 duration: 1,
                 ease: 'none'
             }, 0)
@@ -165,8 +166,8 @@ const Header: React.FC = () => {
                 ease: 'none'
             }, 0);
 
-        // Active section trigger tracking across scroll
-        ['#home', '#introduction', '#services', '#track-mode', '#showcase', '#pricing', '#testimonials', '#blog', '#store', '#faq', '#contact-form'].forEach((id) => {
+        // Active section trigger tracking across scroll (all verified valid DOM IDs)
+        ['#home', '#services', '#track-mode', '#showcase', '#pricing', '#testimonials', '#blog', '#store', '#faq', '#contact-form'].forEach((id) => {
             ScrollTrigger.create({
                 trigger: id,
                 start: 'top 35%',
@@ -463,13 +464,20 @@ const Header: React.FC = () => {
                         <div className="drawer-footer-item flex flex-col gap-3">
                             <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-ln-yellow">CONNECT</span>
                             <div className="flex flex-col gap-2">
-                                {['Instagram', 'Dribbble', 'LinkedIn', 'Twitter'].map((social) => (
+                                {[
+                                    { name: 'Instagram', url: 'https://instagram.com/logicstac' },
+                                    { name: 'Dribbble', url: 'https://dribbble.com/logicstac' },
+                                    { name: 'LinkedIn', url: 'https://linkedin.com/company/logicstac' },
+                                    { name: 'Twitter / X', url: 'https://x.com/logicstac' },
+                                ].map((social) => (
                                     <a
-                                        key={social}
-                                        href={`#${social.toLowerCase()}`}
+                                        key={social.name}
+                                        href={social.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="text-sm font-semibold text-white hover:text-ln-yellow transition-colors flex items-center gap-1 group"
                                     >
-                                        {social}
+                                        {social.name}
                                         <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">→</span>
                                     </a>
                                 ))}
@@ -500,8 +508,24 @@ const Header: React.FC = () => {
                 <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 border-t border-white/5 pt-8 text-gray-500 text-xs font-sans drawer-footer-item">
                     <p>© 2025 LOGICSTAC AGENCY. ALL RIGHTS RESERVED.</p>
                     <div className="flex gap-6 text-white/40">
-                        <a href="/privacy" className="hover:text-white transition-colors">PRIVACY POLICY</a>
-                        <a href="/terms" className="hover:text-white transition-colors">TERMS OF SERVICE</a>
+                        <button
+                            onClick={() => {
+                                closeOverlayMenu();
+                                openLegalModal('privacy');
+                            }}
+                            className="hover:text-white transition-colors cursor-pointer bg-transparent border-none p-0 text-inherit font-inherit text-xs uppercase"
+                        >
+                            PRIVACY POLICY
+                        </button>
+                        <button
+                            onClick={() => {
+                                closeOverlayMenu();
+                                openLegalModal('terms');
+                            }}
+                            className="hover:text-white transition-colors cursor-pointer bg-transparent border-none p-0 text-inherit font-inherit text-xs uppercase"
+                        >
+                            TERMS OF SERVICE
+                        </button>
                     </div>
                 </div>
             </div>

@@ -3,10 +3,11 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { scrollToSection } from '../../utils/scroll';
+import { openLegalModal } from '../ui/legal-modal';
 
 const Footer = () => {
-    const containerRef = useRef(null);
-    const marqueeRef = useRef(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const marqueeRef = useRef<HTMLDivElement>(null);
 
     const logos = [
         { src: '/images/footer/monster.svg', alt: 'Monster Energy' },
@@ -51,8 +52,8 @@ const Footer = () => {
         gsap.from('.reveal-item', {
             y: 40,
             opacity: 0,
-            duration: 1.5,
-            stagger: 0.15,
+            duration: 1.2,
+            stagger: 0.12,
             ease: 'power4.out',
             scrollTrigger: {
                 trigger: containerRef.current,
@@ -62,10 +63,18 @@ const Footer = () => {
 
     }, { scope: containerRef, dependencies: [] });
 
-    const RollingLink = ({ text, href, className = '' }) => {
-        const linkRef = useRef(null);
+    interface RollingLinkProps {
+        text: string;
+        href: string;
+        className?: string;
+        isExternal?: boolean;
+    }
+
+    const RollingLink: React.FC<RollingLinkProps> = ({ text, href, className = '', isExternal = false }) => {
+        const linkRef = useRef<HTMLAnchorElement>(null);
 
         useGSAP(() => {
+            if (!linkRef.current) return;
             const topChars = linkRef.current.querySelectorAll('.top-char');
             const bottomChars = linkRef.current.querySelectorAll('.bottom-char');
 
@@ -87,12 +96,13 @@ const Footer = () => {
             const onEnter = () => tl.play();
             const onLeave = () => tl.reverse();
 
-            linkRef.current.addEventListener('mouseenter', onEnter);
-            linkRef.current.addEventListener('mouseleave', onLeave);
+            const current = linkRef.current;
+            current.addEventListener('mouseenter', onEnter);
+            current.addEventListener('mouseleave', onLeave);
 
             return () => {
-                linkRef.current?.removeEventListener('mouseenter', onEnter);
-                linkRef.current?.removeEventListener('mouseleave', onLeave);
+                current.removeEventListener('mouseenter', onEnter);
+                current.removeEventListener('mouseleave', onLeave);
             };
         }, { scope: linkRef });
 
@@ -100,13 +110,15 @@ const Footer = () => {
             <a
                 ref={linkRef}
                 href={href}
+                target={isExternal ? '_blank' : undefined}
+                rel={isExternal ? 'noopener noreferrer' : undefined}
                 onClick={(e) => {
                     if (href.startsWith('#')) {
                         e.preventDefault();
                         scrollToSection(href);
                     }
                 }}
-                className={`rolling-link relative overflow-hidden h-[1.1em] flex items-center font-display font-black uppercase ${className}`}
+                className={`rolling-link relative overflow-hidden h-[1.15em] flex items-center font-display font-black uppercase ${className}`}
             >
                 <div className="flex">
                     {text.split('').map((char, i) => (
@@ -127,7 +139,11 @@ const Footer = () => {
     };
 
     return (
-        <footer id="contact" className="relative w-full pt-4 sm:pt-10 md:pt-16 pb-6 sm:pb-8 px-3 sm:px-4 bg-gradient-to-b from-ln-cream via-ln-yellow/60 to-ln-yellow">
+        <footer
+            id="contact"
+            ref={containerRef}
+            className="relative w-full pt-4 sm:pt-10 md:pt-16 pb-6 sm:pb-8 px-3 sm:px-4 bg-gradient-to-b from-ln-cream via-ln-yellow/60 to-ln-yellow"
+        >
             {/* Main masked container */}
             <div
                 className="footer-desktop-mask relative w-full min-h-0 md:h-[780px] lg:h-[800px] flex flex-col items-center justify-between py-8 sm:py-10 px-4 md:p-0 overflow-hidden rounded-3xl md:rounded-t-[4rem] gap-6 md:gap-0"
@@ -149,9 +165,7 @@ const Footer = () => {
                 />
 
                 {/* Title and signature - repositioned for mobile and desktop */}
-                <div className="relative md:absolute md:top-[5rem] lg:top-[8rem] md:left-1/2 md:-translate-x-1/2 w-full max-w-7xl px-4 text-center z-[1]">
-                    <div className="absolute -top-24 left-1/2 -translate-x-1/2 -rotate-[5deg] w-64 md:w-[12vw] z-[-1] pointer-events-none select-none mix-blend-multiply">
-                    </div>
+                <div className="reveal-item relative md:absolute md:top-[5rem] lg:top-[8rem] md:left-1/2 md:-translate-x-1/2 w-full max-w-7xl px-4 text-center z-[1]">
                     <h2 className="text-white relative z-10 text-[1.8rem] sm:text-[3rem] md:text-[4rem] lg:text-[5rem] xl:text-[5.5rem] font-sans font-black leading-[0.95] md:leading-[0.8] tracking-[-0.04em] uppercase font-semibold">
                         LOGICSTAC <span className="text-ln-yellow font-serif font-normal">DIGITAL</span> <br />
                         <span className="text-ln-yellow font-serif font-normal">AGENCY.</span>
@@ -159,17 +173,23 @@ const Footer = () => {
                 </div>
 
                 {/* Navigation */}
-                <div className="relative md:absolute md:top-[48%] md:-translate-y-1/2 md:left-0 md:right-0 z-20 w-full">
+                <div className="reveal-item relative md:absolute md:top-[48%] md:-translate-y-1/2 md:left-0 md:right-0 z-20 w-full">
                     <div className="w-full max-w-[82.5rem] mx-auto px-4 sm:px-12 flex justify-around sm:justify-between items-start md:items-center">
                         {/* PAGES */}
                         <div className="flex flex-col gap-2 sm:gap-3 items-center text-center">
                             <span className="text-white/30 text-[0.55rem] uppercase font-bold tracking-[0.3em] font-sans">PAGES</span>
                             <nav className="flex flex-col gap-1 md:gap-2 items-center">
-                                {['HOME', 'SERVICES', 'PORTFOLIO', 'PRICING'].map(link => (
+                                {[
+                                    { name: 'HOME', target: '#home' },
+                                    { name: 'SERVICES', target: '#services' },
+                                    { name: 'PORTFOLIO', target: '#showcase' },
+                                    { name: 'PRICING', target: '#pricing' },
+                                    { name: 'STORE', target: '#store' },
+                                ].map(link => (
                                     <RollingLink
-                                        key={link}
-                                        text={link}
-                                        href={`#${link === 'PORTFOLIO' ? 'showcase' : link.toLowerCase()}`}
+                                        key={link.name}
+                                        text={link.name}
+                                        href={link.target}
                                         className="text-sm sm:text-lg md:text-xl lg:text-2xl text-ln-white leading-[1.1]"
                                     />
                                 ))}
@@ -185,11 +205,17 @@ const Footer = () => {
                         <div className="flex flex-col gap-2 sm:gap-3 items-center text-center">
                             <span className="text-white/30 text-[0.55rem] uppercase font-bold tracking-[0.3em] font-sans">FOLLOW ON</span>
                             <nav className="flex flex-col gap-1 md:gap-2 items-center">
-                                {['TIKTOK', 'INSTAGRAM', 'YOUTUBE', 'TWITCH'].map(link => (
+                                {[
+                                    { name: 'INSTAGRAM', url: 'https://instagram.com/logicstac' },
+                                    { name: 'LINKEDIN', url: 'https://linkedin.com/company/logicstac' },
+                                    { name: 'TWITTER / X', url: 'https://x.com/logicstac' },
+                                    { name: 'YOUTUBE', url: 'https://youtube.com/@logicstac' },
+                                ].map(social => (
                                     <RollingLink
-                                        key={link}
-                                        text={link}
-                                        href={`#${link}`}
+                                        key={social.name}
+                                        text={social.name}
+                                        href={social.url}
+                                        isExternal={true}
                                         className="text-sm sm:text-lg md:text-xl lg:text-2xl text-ln-white leading-[1.1]"
                                     />
                                 ))}
@@ -199,7 +225,7 @@ const Footer = () => {
                 </div>
 
                 {/* Business button - centered and downsized */}
-                <div className="relative md:absolute md:bottom-20 lg:bottom-24 md:left-1/2 md:-translate-x-1/2 z-30">
+                <div className="reveal-item relative md:absolute md:bottom-20 lg:bottom-24 md:left-1/2 md:-translate-x-1/2 z-30">
                     <button
                         onClick={() => {
                             scrollToSection('#contact-form');
@@ -237,8 +263,18 @@ const Footer = () => {
                     <b>© 2025 LOGICSTAC.</b> ALL RIGHTS RESERVED
                 </p>
                 <div className="flex gap-4 font-sans font-extrabold text-black text-xs sm:text-sm uppercase tracking-tight">
-                    <a href="/privacy" className="hover:underline">PRIVACY POLICY</a>
-                    <a href="/terms" className="hover:underline">TERMS</a>
+                    <button
+                        onClick={() => openLegalModal('privacy')}
+                        className="hover:underline cursor-pointer bg-transparent border-none p-0 text-inherit font-inherit"
+                    >
+                        PRIVACY POLICY
+                    </button>
+                    <button
+                        onClick={() => openLegalModal('terms')}
+                        className="hover:underline cursor-pointer bg-transparent border-none p-0 text-inherit font-inherit"
+                    >
+                        TERMS
+                    </button>
                 </div>
             </div>
         </footer>

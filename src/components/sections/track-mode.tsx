@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { CornerDownRight } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { scrollToSection } from '../../utils/scroll';
 
 const TrackMode: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -38,11 +39,15 @@ const TrackMode: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full py-16 md:py-24 bg-ln-cream text-ln-dark overflow-hidden">
+    <section id="track-mode" ref={sectionRef} className="relative w-full py-16 md:py-24 bg-ln-cream text-ln-dark overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
 
         {/* On Track - Left Side */}
-        <div ref={onTrackRef} className="flex flex-col items-center group cursor-pointer relative hover:scale-[1.02] md:hover:scale-105 transition-transform duration-500">
+        <div
+          ref={onTrackRef}
+          onClick={() => scrollToSection('#showcase')}
+          className="flex flex-col items-center group cursor-pointer relative hover:scale-[1.02] md:hover:scale-105 transition-transform duration-500"
+        >
 
           {/* Typography */}
           <div className="relative mb-8 md:mb-12 text-center">
@@ -54,7 +59,14 @@ const TrackMode: React.FC = () => {
               Cutting-edge user interfaces and immersive digital experiences.
             </p>
             <div className="mt-4 flex justify-center">
-              <button className="w-10 h-10 bg-ln-yellow rounded-lg flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  scrollToSection('#showcase');
+                }}
+                aria-label="Explore Web Design Showcase"
+                className="w-10 h-10 bg-ln-yellow rounded-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-transform shadow-lg cursor-pointer border-none"
+              >
                 <CornerDownRight size={20} className="text-black" />
               </button>
             </div>
@@ -75,7 +87,11 @@ const TrackMode: React.FC = () => {
         </div>
 
         {/* Off Track - Right Side */}
-        <div ref={offTrackRef} className="flex flex-col items-center group cursor-pointer relative mt-8 md:mt-0 hover:scale-[1.02] md:hover:scale-105 transition-transform duration-500">
+        <div
+          ref={offTrackRef}
+          onClick={() => scrollToSection('#store')}
+          className="flex flex-col items-center group cursor-pointer relative mt-8 md:mt-0 hover:scale-[1.02] md:hover:scale-105 transition-transform duration-500"
+        >
 
           {/* Typography */}
           <div className="relative mb-8 md:mb-12 text-center">
@@ -90,7 +106,14 @@ const TrackMode: React.FC = () => {
               Robust development and scalable architecture for modern products.
             </p>
             <div className="mt-4 flex justify-center">
-              <button className="w-10 h-10 bg-ln-yellow rounded-lg flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  scrollToSection('#store');
+                }}
+                aria-label="Explore Full-Stack Growth Store"
+                className="w-10 h-10 bg-ln-yellow rounded-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-transform shadow-lg cursor-pointer border-none"
+              >
                 <CornerDownRight size={20} className="text-black" />
               </button>
             </div>

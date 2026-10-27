@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import HeroMessage from './hero-message';
 import HeroFloatingElements from './hero-floating-elements';
 import HeroCustomCursor from './hero-custom-cursor';
 import WaterRipple from '../../ui/water-ripple';
@@ -36,9 +35,6 @@ const Hero: React.FC = () => {
 
       {/* Floating Decorative Elements */}
       <HeroFloatingElements />
-
-      {/* Hero Center Message / Title */}
-      <HeroMessage containerRef={containerRef} />
 
       {/* Interactive Custom Cursor */}
       <HeroCustomCursor containerRef={containerRef} />

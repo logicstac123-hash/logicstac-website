@@ -193,6 +193,26 @@ export default function BlogSection() {
     }
   }, []);
 
+  // Body scroll lock and Escape key listener for article modal
+  useEffect(() => {
+    if (activeArticle) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          setActiveArticle(null);
+        }
+      };
+
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = originalOverflow;
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    }
+  }, [activeArticle]);
+
   const handleShare = () => {
     navigator.clipboard?.writeText(window.location.href);
     setCopiedLink(true);
