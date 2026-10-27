@@ -2,14 +2,21 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Send, ArrowRight, User, Mail, MessageSquare, Briefcase, Sparkles, CheckCircle2 } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SimpleIcon } from '../ui/simple-icon';
+import { siFigma, siReact, siThreedotjs, siBlender, siFlutter, siGoogle } from 'simple-icons';
 
-const servicesList = [
-  'Web Design',
-  'Full Stack Development',
-  'Immersive 3D / WebGL',
-  'Branding & Design System',
-  'Mobile Application',
-  'Growth Marketing',
+interface ServiceItem {
+  name: string;
+  icon: typeof siFigma;
+}
+
+const servicesList: ServiceItem[] = [
+  { name: 'Web Design', icon: siFigma },
+  { name: 'Full Stack Development', icon: siReact },
+  { name: 'Immersive 3D / WebGL', icon: siThreedotjs },
+  { name: 'Branding & Design System', icon: siBlender },
+  { name: 'Mobile Application', icon: siFlutter },
+  { name: 'Growth Marketing', icon: siGoogle },
 ];
 
 const budgetRanges = [
@@ -126,19 +133,24 @@ const ContactForm: React.FC = () => {
             </label>
             <div className="flex flex-wrap gap-2 md:gap-3">
               {servicesList.map((service, idx) => {
-                const isSelected = selectedServices.includes(service);
+                const isSelected = selectedServices.includes(service.name);
                 return (
                   <button
                     key={idx}
                     type="button"
-                    onClick={() => handleServiceToggle(service)}
-                    className={`px-3.5 py-2.5 md:px-5 md:py-3 rounded-full text-[11px] md:text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${
+                    onClick={() => handleServiceToggle(service.name)}
+                    className={`inline-flex items-center gap-2 px-3.5 py-2.5 md:px-5 md:py-3 rounded-full text-[11px] md:text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${
                       isSelected
                         ? 'bg-ln-yellow text-black border-ln-yellow shadow-lg scale-105'
                         : 'bg-white text-ln-dark border-gray-200 hover:border-ln-yellow/50'
                     }`}
                   >
-                    {service}
+                    <SimpleIcon
+                      icon={service.icon}
+                      size={14}
+                      className={isSelected ? 'text-black' : 'text-gray-500'}
+                    />
+                    <span>{service.name}</span>
                   </button>
                 );
               })}

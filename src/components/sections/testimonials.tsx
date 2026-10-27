@@ -40,7 +40,7 @@ const testimonials: Testimonial[] = [
     avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200',
     rating: 5,
     category: 'Mobile Apps',
-    impactTag: '4.9★ App Store Rating',
+    impactTag: '4.9 App Store Rating',
     quote: 'The speed of execution with their Scale Retainer is unlike anything we’ve seen in London or SF. Their engineers built our cross-platform mobile application with flawless fluid animations and rock-solid architecture.',
     verified: true,
     year: '2026',

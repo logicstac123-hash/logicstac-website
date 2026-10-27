@@ -3,6 +3,7 @@ import { ArrowUpRight, X, Sparkles, Code, Layout, Layers } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { scrollToSection } from '../../utils/scroll';
+import { SimpleIcon, getTechIcon } from '../ui/simple-icon';
 
 interface Project {
   id: number;
@@ -284,9 +285,22 @@ const Helmets: React.FC = () => {
 
               {/* Grid Text Content - Always Visible/Reveals More */}
               <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                <span className="text-[10px] font-mono tracking-widest text-ln-yellow uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
-                  {project.category}
-                </span>
+                <div className="flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75 mb-1">
+                  <span className="text-[10px] font-mono tracking-widest text-ln-yellow uppercase">
+                    {project.category}
+                  </span>
+                  {/* Technology icons pill list */}
+                  <div className="flex items-center gap-1.5">
+                    {project.tech.slice(0, 3).map((t, i) => {
+                      const icon = getTechIcon(t);
+                      return icon ? (
+                        <span key={i} title={t} className="p-1 rounded bg-black/60 border border-white/10 text-gray-300 hover:text-ln-yellow transition-colors">
+                          <SimpleIcon icon={icon} size={11} />
+                        </span>
+                      ) : null;
+                    })}
+                  </div>
+                </div>
                 <h4 className="text-lg font-bold text-white uppercase tracking-tight line-clamp-1 mt-1 group-hover:text-ln-yellow transition-colors">
                   {project.name}
                 </h4>
@@ -383,14 +397,18 @@ const Helmets: React.FC = () => {
                 <Code size={12} className="text-ln-yellow" /> TECHNOLOGIES USED
               </h5>
               <div className="flex flex-wrap gap-2 mb-8">
-                {selectedProject?.tech.map((t, i) => (
-                  <span
-                    key={i}
-                    className="text-xs px-2.5 py-1 bg-white/5 border border-white/10 rounded-md font-mono text-gray-300 hover:border-ln-yellow hover:text-white transition-colors cursor-default"
-                  >
-                    {t}
-                  </span>
-                ))}
+                {selectedProject?.tech.map((t, i) => {
+                  const icon = getTechIcon(t);
+                  return (
+                    <span
+                      key={i}
+                      className="text-xs px-3 py-1.5 bg-white/5 border border-white/10 rounded-md font-mono text-gray-300 hover:border-ln-yellow hover:text-white transition-colors cursor-default inline-flex items-center gap-2"
+                    >
+                      {icon && <SimpleIcon icon={icon} size={13} className="text-ln-yellow" />}
+                      <span>{t}</span>
+                    </span>
+                  );
+                })}
               </div>
 
               <div className="flex justify-end">

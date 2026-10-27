@@ -3,6 +3,8 @@ import { ArrowUpRight } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { scrollToSection } from '../../utils/scroll';
+import { SimpleIcon } from '../ui/simple-icon';
+import { siReact, siNextdotjs, siTypescript, siTailwindcss, siThreedotjs, siShopify, siVercel } from 'simple-icons';
 
 const Shop: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -68,6 +70,30 @@ const Shop: React.FC = () => {
             >
               Get In Touch <ArrowUpRight size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </a>
+
+            {/* Simple Icons Tech Stack Strip */}
+            <div className="mt-8 pt-6 border-t border-gray-300 flex flex-wrap items-center gap-2">
+              <span className="text-[10px] font-mono uppercase font-bold text-gray-500 mr-2 tracking-wider">
+                Built With:
+              </span>
+              {[
+                { name: 'React', icon: siReact },
+                { name: 'Next.js', icon: siNextdotjs },
+                { name: 'TypeScript', icon: siTypescript },
+                { name: 'Tailwind CSS', icon: siTailwindcss },
+                { name: 'Three.js', icon: siThreedotjs },
+                { name: 'Shopify', icon: siShopify },
+                { name: 'Vercel', icon: siVercel },
+              ].map((t) => (
+                <span
+                  key={t.name}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white border border-gray-200 text-[11px] font-mono text-gray-700 shadow-xs hover:border-ln-yellow transition-colors"
+                >
+                  <SimpleIcon icon={t.icon} size={12} className="text-black" />
+                  <span>{t.name}</span>
+                </span>
+              ))}
+            </div>
           </div>
 
           {/* Image Collage */}

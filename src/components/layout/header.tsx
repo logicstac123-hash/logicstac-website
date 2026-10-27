@@ -6,6 +6,8 @@ import { X, ArrowRight } from 'lucide-react';
 import AnimatedTextButton from '../ui/animated-text-button';
 import { scrollToSection } from '../../utils/scroll';
 import { openLegalModal } from '../ui/legal-modal';
+import { SimpleIcon } from '../ui/simple-icon';
+import { siInstagram, siDribbble, siX } from 'simple-icons';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -465,20 +467,23 @@ const Header: React.FC = () => {
                             <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-ln-yellow">CONNECT</span>
                             <div className="flex flex-col gap-2">
                                 {[
-                                    { name: 'Instagram', url: 'https://instagram.com/logicstac' },
-                                    { name: 'Dribbble', url: 'https://dribbble.com/logicstac' },
-                                    { name: 'LinkedIn', url: 'https://linkedin.com/company/logicstac' },
-                                    { name: 'Twitter / X', url: 'https://x.com/logicstac' },
+                                    { name: 'Instagram', url: 'https://instagram.com/logicstac', icon: siInstagram },
+                                    { name: 'Dribbble', url: 'https://dribbble.com/logicstac', icon: siDribbble },
+                                    { name: 'LinkedIn', url: 'https://linkedin.com/company/logicstac', icon: 'linkedin' },
+                                    { name: 'Twitter / X', url: 'https://x.com/logicstac', icon: siX },
                                 ].map((social) => (
                                     <a
                                         key={social.name}
                                         href={social.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-sm font-semibold text-white hover:text-ln-yellow transition-colors flex items-center gap-1 group"
+                                        className="text-sm font-semibold text-white hover:text-ln-yellow transition-colors flex items-center justify-between group py-0.5"
                                     >
-                                        {social.name}
-                                        <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">→</span>
+                                        <div className="flex items-center gap-2">
+                                            <SimpleIcon icon={social.icon} size={14} className="text-ln-yellow/80 group-hover:text-ln-yellow" />
+                                            <span>{social.name}</span>
+                                        </div>
+                                        <ArrowRight size={12} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-ln-yellow" />
                                     </a>
                                 ))}
                             </div>

@@ -1,9 +1,12 @@
 import React, { useRef } from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { scrollToSection } from '../../utils/scroll';
 import { openLegalModal } from '../ui/legal-modal';
+import { SimpleIcon } from '../ui/simple-icon';
+import { siInstagram, siX, siYoutube } from 'simple-icons';
 
 const Footer = () => {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -204,20 +207,22 @@ const Footer = () => {
                         {/* FOLLOW ON */}
                         <div className="flex flex-col gap-2 sm:gap-3 items-center text-center">
                             <span className="text-white/30 text-[0.55rem] uppercase font-bold tracking-[0.3em] font-sans">FOLLOW ON</span>
-                            <nav className="flex flex-col gap-1 md:gap-2 items-center">
+                            <nav className="flex flex-col gap-1.5 md:gap-2.5 items-center">
                                 {[
-                                    { name: 'INSTAGRAM', url: 'https://instagram.com/logicstac' },
-                                    { name: 'LINKEDIN', url: 'https://linkedin.com/company/logicstac' },
-                                    { name: 'TWITTER / X', url: 'https://x.com/logicstac' },
-                                    { name: 'YOUTUBE', url: 'https://youtube.com/@logicstac' },
+                                    { name: 'INSTAGRAM', url: 'https://instagram.com/logicstac', icon: siInstagram },
+                                    { name: 'LINKEDIN', url: 'https://linkedin.com/company/logicstac', icon: 'linkedin' },
+                                    { name: 'TWITTER / X', url: 'https://x.com/logicstac', icon: siX },
+                                    { name: 'YOUTUBE', url: 'https://youtube.com/@logicstac', icon: siYoutube },
                                 ].map(social => (
-                                    <RollingLink
-                                        key={social.name}
-                                        text={social.name}
-                                        href={social.url}
-                                        isExternal={true}
-                                        className="text-sm sm:text-lg md:text-xl lg:text-2xl text-ln-white leading-[1.1]"
-                                    />
+                                    <div key={social.name} className="flex items-center gap-2">
+                                        <SimpleIcon icon={social.icon} size={15} className="text-ln-yellow/80" />
+                                        <RollingLink
+                                            text={social.name}
+                                            href={social.url}
+                                            isExternal={true}
+                                            className="text-sm sm:text-lg md:text-xl lg:text-2xl text-ln-white leading-[1.1]"
+                                        />
+                                    </div>
                                 ))}
                             </nav>
                         </div>
@@ -232,7 +237,7 @@ const Footer = () => {
                         }}
                         className="bg-ln-yellow text-black px-6 sm:px-7 py-2.5 rounded-lg font-sans font-black text-[0.6875rem] tracking-wider flex items-center gap-2 hover:shadow-[0_0_2rem_rgba(210,255,0,0.3)] transition-all duration-300 cursor-pointer uppercase border-none active:scale-95"
                     >
-                        START A PROJECT <span className="text-sm">⤴</span>
+                        START A PROJECT <ArrowUpRight size={14} className="stroke-[2.5]" />
                     </button>
                 </div>
 
