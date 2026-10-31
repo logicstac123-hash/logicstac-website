@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, ArrowRight, User, Mail, MessageSquare, Briefcase, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Send, User, Mail, MessageSquare, CheckCircle2 } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SimpleIcon } from '../ui/simple-icon';
-import { siFigma, siReact, siThreedotjs, siBlender, siFlutter, siGoogle } from 'simple-icons';
+import { siFigma, siReact, siThreedotjs, siBlender, siFlutter, siGoogle, siRocket } from 'simple-icons';
 
 interface ServiceItem {
   name: string;
@@ -109,9 +109,9 @@ const ContactForm: React.FC = () => {
 
         {/* Header Block */}
         <div className="flex flex-col items-center text-center mb-12 md:mb-16 reveal-form-item">
-          <div className="inline-flex items-center gap-2 bg-ln-yellow/10 border border-ln-yellow/20 px-4 py-1.5 rounded-full mb-6">
-            <Sparkles className="w-4 h-4 text-ln-yellow animate-pulse" />
-            <span className="text-[10px] font-mono tracking-widest uppercase text-ln-dark">Initiate Scope</span>
+          <div className="inline-flex items-center gap-2 bg-black text-white px-4 py-1.5 rounded-full mb-6 border border-ln-yellow/40 shadow-sm">
+            <SimpleIcon icon={siRocket} size={14} className="text-ln-yellow" />
+            <span className="text-[10px] font-mono tracking-widest uppercase font-bold text-ln-yellow">Initiate Scope</span>
           </div>
 
           <h2 className="font-display font-bold text-3xl sm:text-5xl md:text-7xl tracking-tighter uppercase leading-none mb-6">

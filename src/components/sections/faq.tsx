@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
 import gsap from 'gsap';
-import { Plus, Minus, HelpCircle, Sparkles, MessageCircle } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
 import { scrollToSection } from '../../utils/scroll';
+import { SimpleIcon } from '../ui/simple-icon';
+import { siLivechat, siMinutemailer, siDiscourse } from 'simple-icons';
 
 interface FAQItem {
   id: string;
@@ -162,8 +164,8 @@ const FAQSection: React.FC = () => {
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-12 md:mb-16">
-          <div className="inline-flex items-center gap-2 bg-black text-white px-4 py-1.5 rounded-full mb-4 border border-ln-yellow/30">
-            <HelpCircle size={14} className="text-ln-yellow" />
+          <div className="inline-flex items-center gap-2 bg-black text-white px-4 py-1.5 rounded-full mb-4 border border-ln-yellow/30 shadow-xs">
+            <SimpleIcon icon={siDiscourse} size={13} className="text-ln-yellow" />
             <span className="font-mono text-xs uppercase tracking-widest font-bold text-ln-yellow">
               Client FAQ
             </span>
@@ -192,8 +194,10 @@ const FAQSection: React.FC = () => {
 
         {/* Footer Prompt */}
         <div className="mt-12 text-center flex flex-col md:flex-row items-center justify-center gap-4 bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-gray-200 shadow-sm">
-          <div className="flex items-center gap-2 text-sm text-gray-700">
-            <Sparkles size={16} className="text-ln-yellow" />
+          <div className="flex items-center gap-2.5 text-sm font-medium text-gray-800">
+            <div className="w-7 h-7 rounded-lg bg-black flex items-center justify-center text-ln-yellow border border-ln-yellow/30 shadow-xs">
+              <SimpleIcon icon={siLivechat} size={14} className="text-ln-yellow" />
+            </div>
             <span>Have a custom question not listed here?</span>
           </div>
           <a
@@ -202,9 +206,9 @@ const FAQSection: React.FC = () => {
               e.preventDefault();
               scrollToSection('#contact-form');
             }}
-            className="inline-flex items-center gap-2 bg-black text-white hover:bg-ln-yellow hover:text-black font-mono font-bold uppercase text-xs tracking-wider px-5 py-2.5 rounded-xl transition-all duration-300 cursor-pointer"
+            className="inline-flex items-center gap-2 bg-black text-white hover:bg-ln-yellow hover:text-black font-mono font-bold uppercase text-xs tracking-wider px-5 py-2.5 rounded-xl transition-all duration-300 cursor-pointer group shadow-sm hover:shadow-md"
           >
-            <MessageCircle size={14} />
+            <SimpleIcon icon={siMinutemailer} size={14} className="text-ln-yellow group-hover:text-black transition-colors" />
             Ask Our Engineers
           </a>
         </div>

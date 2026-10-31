@@ -2,6 +2,8 @@ import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import BackgroundCurve from '../ui/background-curve';
+import { SimpleIcon } from '../ui/simple-icon';
+import { siThreedotjs } from 'simple-icons';
 
 const Introduction: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -62,10 +64,8 @@ const Introduction: React.FC = () => {
 
         {/* Typography Block */}
         <div ref={textRef} className="flex flex-col items-center text-center mb-16 md:mb-32">
-          <div className="w-12 h-12 md:w-16 md:h-16 border border-ln-yellow rounded-full flex items-center justify-center mb-6 md:mb-8 opacity-80">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-ln-yellow md:w-[30px] md:h-[30px]">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" strokeWidth="1" />
-            </svg>
+          <div className="w-12 h-12 md:w-16 md:h-16 border border-ln-yellow/60 bg-ln-yellow/10 rounded-full flex items-center justify-center mb-6 md:mb-8 shadow-[0_0_20px_rgba(225,255,0,0.15)] group hover:scale-110 transition-transform duration-300">
+            <SimpleIcon icon={siThreedotjs} size={24} className="text-ln-yellow group-hover:rotate-12 transition-transform duration-300 md:w-7 md:h-7" />
           </div>
 
           <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-[6.5rem] leading-[1.05] sm:leading-[0.95] md:leading-[0.85] tracking-tight uppercase max-w-full md:max-w-[92%] lg:max-w-[88%] mx-auto font-display font-bold">

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight, X, Sparkles, Code, Layout, Layers } from 'lucide-react';
+import { ArrowUpRight, X, Code, Layout, Layers } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { scrollToSection } from '../../utils/scroll';

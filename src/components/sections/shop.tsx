@@ -4,7 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { scrollToSection } from '../../utils/scroll';
 import { SimpleIcon } from '../ui/simple-icon';
-import { siReact, siNextdotjs, siTypescript, siTailwindcss, siThreedotjs, siShopify, siVercel } from 'simple-icons';
+import { siReact, siNextdotjs, siTypescript, siTailwindcss, siThreedotjs, siShopify, siVercel, siRocket } from 'simple-icons';
 
 const Shop: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -49,9 +49,9 @@ const Shop: React.FC = () => {
 
           {/* Text Content */}
           <div ref={textRef} className="relative z-10">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="w-2 h-2 bg-black rounded-full animate-pulse"></span>
-              <span className="text-xs font-bold uppercase tracking-widest">LogicStac Solutions</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black text-white mb-4 border border-ln-yellow/30 shadow-xs">
+              <SimpleIcon icon={siRocket} size={12} className="text-ln-yellow" />
+              <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-ln-yellow">LogicStac Solutions</span>
             </div>
             <h2 className="font-display font-bold text-6xl sm:text-7xl md:text-9xl tracking-tighter uppercase leading-[0.85] mb-8">
               Grow Your<br />

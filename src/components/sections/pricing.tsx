@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Check, HelpCircle, Flame, Zap, Sparkles, ArrowRight } from 'lucide-react';
+import { Check, HelpCircle, ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { scrollToSection } from '../../utils/scroll';
+import { SimpleIcon } from '../ui/simple-icon';
+import { siTarget, siZap, siRocket, siThreedotjs } from 'simple-icons';
 
 interface PricingFeature {
   text: string;
@@ -30,7 +32,7 @@ const pricingTiers: PricingTier[] = [
     priceAnnually: '$3,900',
     billingPeriod: 'per month',
     badge: 'Launch Fast',
-    icon: <Zap className="w-6 h-6 text-ln-yellow" />,
+    icon: <SimpleIcon icon={siZap} size={22} className="text-ln-yellow" />,
     features: [
       { text: 'One request at a time', included: true },
       { text: 'Custom Web & Mobile Design', included: true },
@@ -51,7 +53,7 @@ const pricingTiers: PricingTier[] = [
     priceAnnually: '$6,800',
     billingPeriod: 'per month',
     badge: 'Best Value',
-    icon: <Flame className="w-6 h-6 text-ln-yellow" />,
+    icon: <SimpleIcon icon={siRocket} size={22} className="text-ln-yellow" />,
     features: [
       { text: 'Two requests at a time (Double output)', included: true },
       { text: 'Dedicated Product Manager', included: true },
@@ -72,7 +74,7 @@ const pricingTiers: PricingTier[] = [
     priceAnnually: 'Custom',
     billingPeriod: 'project-based',
     badge: 'Bespoke Elite',
-    icon: <Sparkles className="w-6 h-6 text-ln-yellow" />,
+    icon: <SimpleIcon icon={siThreedotjs} size={22} className="text-ln-yellow" />,
     features: [
       { text: 'Dedicated agency strike team', included: true },
       { text: 'Next-Gen 3D, Rive & WebGL engines', included: true },
@@ -123,8 +125,8 @@ const Pricing: React.FC = () => {
         {/* Header Block */}
         <div className="flex flex-col items-center text-center mb-12 md:mb-20">
           <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full mb-6">
-            <Sparkles className="w-4 h-4 text-ln-yellow animate-pulse" />
-            <span className="text-[10px] font-mono tracking-widest uppercase text-gray-300">Transparent Partnership</span>
+            <SimpleIcon icon={siTarget} size={13} className="text-ln-yellow" />
+            <span className="text-[10px] font-mono tracking-widest uppercase text-gray-300 font-bold">Transparent Partnership</span>
           </div>
 
           <h2 className="font-display font-bold text-3xl sm:text-5xl md:text-7xl lg:text-8xl tracking-tighter uppercase leading-none mb-6">

@@ -6,7 +6,7 @@ import { X, ArrowRight } from 'lucide-react';
 import AnimatedTextButton from '../ui/animated-text-button';
 import { scrollToSection } from '../../utils/scroll';
 import { openLegalModal } from '../ui/legal-modal';
-import { SimpleIcon } from '../ui/simple-icon';
+import { SimpleIcon, siLinkedin } from '../ui/simple-icon';
 import { siInstagram, siDribbble, siX } from 'simple-icons';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -469,7 +469,7 @@ const Header: React.FC = () => {
                                 {[
                                     { name: 'Instagram', url: 'https://instagram.com/logicstac', icon: siInstagram },
                                     { name: 'Dribbble', url: 'https://dribbble.com/logicstac', icon: siDribbble },
-                                    { name: 'LinkedIn', url: 'https://linkedin.com/company/logicstac', icon: 'linkedin' },
+                                    { name: 'LinkedIn', url: 'https://linkedin.com/company/logicstac', icon: siLinkedin },
                                     { name: 'Twitter / X', url: 'https://x.com/logicstac', icon: siX },
                                 ].map((social) => (
                                     <a

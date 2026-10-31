@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { scrollToSection } from '../../utils/scroll';
 import { openLegalModal } from '../ui/legal-modal';
-import { SimpleIcon } from '../ui/simple-icon';
+import { SimpleIcon, siLinkedin } from '../ui/simple-icon';
 import { siInstagram, siX, siYoutube } from 'simple-icons';
 
 const Footer = () => {
@@ -210,7 +210,7 @@ const Footer = () => {
                             <nav className="flex flex-col gap-1.5 md:gap-2.5 items-center">
                                 {[
                                     { name: 'INSTAGRAM', url: 'https://instagram.com/logicstac', icon: siInstagram },
-                                    { name: 'LINKEDIN', url: 'https://linkedin.com/company/logicstac', icon: 'linkedin' },
+                                    { name: 'LINKEDIN', url: 'https://linkedin.com/company/logicstac', icon: siLinkedin },
                                     { name: 'TWITTER / X', url: 'https://x.com/logicstac', icon: siX },
                                     { name: 'YOUTUBE', url: 'https://youtube.com/@logicstac', icon: siYoutube },
                                 ].map(social => (

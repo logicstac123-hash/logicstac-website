@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Sparkles, ArrowUpRight, Clock, Calendar, User, Search, X, Tag, BookOpen, Share2, ThumbsUp, ArrowRight, Check } from 'lucide-react';
+import { ArrowUpRight, Clock, Calendar, User, Search, X, Tag, BookOpen, Share2, ThumbsUp, ArrowRight, Check } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { scrollToSection } from '../../utils/scroll';
+import { SimpleIcon } from '../ui/simple-icon';
+import { siSubstack } from 'simple-icons';
 
 export interface BlogPost {
   id: string;
@@ -235,7 +237,7 @@ export default function BlogSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
           <div className="space-y-4 max-w-3xl">
             <div className="animate-blog-header inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/15 text-ln-yellow text-xs sm:text-sm font-sans font-bold tracking-wider uppercase">
-              <Sparkles className="w-3.5 h-3.5 text-ln-yellow" />
+              <SimpleIcon icon={siSubstack} size={14} className="text-ln-yellow" />
               <span>INSIGHTS & PERSPECTIVES</span>
             </div>
 

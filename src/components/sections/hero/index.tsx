@@ -39,15 +39,6 @@ const Hero: React.FC = () => {
       {/* Interactive Custom Cursor */}
       <HeroCustomCursor containerRef={containerRef} />
 
-      {/* Bottom Subtitle / Tagline */}
-      <div className="relative z-30 flex flex-col items-center text-center px-4">
-        <div className="inline-flex items-center gap-3 bg-black/60 backdrop-blur-md px-5 py-2 rounded-full border border-white/20 shadow-lg">
-          <span className="w-2 h-2 rounded-full bg-ln-yellow animate-ping" />
-          <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-white">
-            LogicStac Digital Agency • London & Worldwide
-          </span>
-        </div>
-      </div>
     </section>
   );
 };

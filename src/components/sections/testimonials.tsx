@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Star, Quote, Sparkles, Building2, CheckCircle2, ArrowRight, MessageSquareQuote, ChevronLeft, ChevronRight, ThumbsUp } from 'lucide-react';
+import { Star, Quote, Building2, CheckCircle2, ArrowRight, MessageSquareQuote, ChevronLeft, ChevronRight, ThumbsUp } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { scrollToSection } from '../../utils/scroll';
+import { SimpleIcon } from '../ui/simple-icon';
+import { siTrustpilot } from 'simple-icons';
 
 interface Testimonial {
   id: string;
@@ -175,7 +177,7 @@ export default function Testimonials() {
         {/* Section Header */}
         <div className="flex flex-col items-center text-center gap-4 mb-12 sm:mb-16">
           <div className="animate-testimonial-header inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/15 text-ln-yellow text-xs sm:text-sm font-sans font-bold tracking-wider uppercase">
-            <Sparkles className="w-3.5 h-3.5 text-ln-yellow" />
+            <SimpleIcon icon={siTrustpilot} size={14} className="text-ln-yellow" />
             <span>CLIENT SUCCESS STORIES</span>
             <span className="w-1 h-1 rounded-full bg-ln-yellow mx-1" />
             <div className="flex items-center text-ln-yellow gap-0.5">
